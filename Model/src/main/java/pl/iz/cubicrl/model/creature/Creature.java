@@ -5,14 +5,13 @@
  */
 package pl.iz.cubicrl.model.creature;
 
-import pl.iz.cubicrl.model.creature.StatHolder;
 import pl.iz.cubicrl.model.effects.Effect;
 import java.util.ArrayList;
 import java.util.Random;
 import pl.iz.cubicrl.model.api.TurnObserver;
 import pl.iz.cubicrl.model.api.Visitor;
 import pl.iz.cubicrl.model.api.VisitorAdapter;
-import pl.iz.cubicrl.model.core.Attack;
+import pl.iz.cubicrl.model.attack.Attack;
 import pl.iz.cubicrl.model.enums.Attribute;
 import pl.iz.cubicrl.model.enums.DamageType;
 import pl.iz.cubicrl.model.enums.LifeStat;

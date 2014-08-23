@@ -10,7 +10,6 @@ import java.util.Stack;
 import pl.iz.cubicrl.model.api.Visitor;
 import pl.iz.cubicrl.model.core.Coords2D;
 import pl.iz.cubicrl.model.creature.Creature;
-import pl.iz.cubicrl.model.occurence.Occurence;
 
 /**
  * Specific Field, which can contain Items and Creatures
@@ -80,8 +79,8 @@ public class PenetrableField extends Field {
 
 	@Override
 	public void nextTurnNotify() {
-		occurences.forEach(o -> o.visit(this));
 		occurences.removeIf(o -> o.isExpired());
+		occurences.forEach(o -> o.visit(this));
 		if(hasResident()) {
 			resident.nextTurnNotify();
 		}

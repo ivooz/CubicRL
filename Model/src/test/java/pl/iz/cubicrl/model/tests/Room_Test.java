@@ -43,7 +43,7 @@ public class Room_Test {
 
 	@Before
 	public void setUp() {
-		testRoom = new Room(roomEdgeSize);
+		testRoom = new Room(roomEdgeSize,"test");
 	}
 
 	@After

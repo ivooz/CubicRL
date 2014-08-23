@@ -8,7 +8,7 @@ package pl.iz.cubicrl.model.creature;
 import pl.iz.cubicrl.model.items.ItemHolder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import pl.iz.cubicrl.model.core.Attack;
+import pl.iz.cubicrl.model.attack.Attack;
 import pl.iz.cubicrl.model.enums.Attribute;
 import pl.iz.cubicrl.model.enums.DamageType;
 import pl.iz.cubicrl.model.enums.ItemSlot;

@@ -6,7 +6,7 @@
 package pl.iz.cubicrl.model.occurence;
 
 import java.util.ArrayList;
-import pl.iz.cubicrl.model.core.Attack;
+import pl.iz.cubicrl.model.attack.Attack;
 import pl.iz.cubicrl.model.core.Coords2D;
 import pl.iz.cubicrl.model.field.PenetrableField;
 import pl.iz.cubicrl.model.effects.Effect;

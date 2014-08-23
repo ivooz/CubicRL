@@ -42,7 +42,7 @@ public class TimedOccurenceWithEffects_Test extends CreatureBaseTest {
 		testOcc.addEffect(testEffect);
 		penetrableField.addOccurence(testOcc);
 		assertEquals(1, penetrableField.getOccurences().size());
-		IntStream.range(0, timer).forEach(i -> penetrableField.nextTurnNotify());
+		IntStream.range(0, timer+1).forEach(i -> penetrableField.nextTurnNotify());
 		assertFalse(penetrableField.hasOccurence());
 	}
 

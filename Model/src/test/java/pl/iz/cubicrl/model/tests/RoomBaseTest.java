@@ -22,7 +22,7 @@ import pl.iz.cubicrl.model.core.Room;
  */
 public class RoomBaseTest {
 
-	Room room;
+	public Room room;
 
 	public RoomBaseTest() {
 	}
@@ -37,7 +37,7 @@ public class RoomBaseTest {
 
 	@Before
 	public void setUp() {
-		room = new Room(10);
+		room = new Room(10,"test");
 		Field[][] fields = room.getFields();
 		IntStream.range(0, 10).forEach(x
 			-> IntStream.range(0, 10).forEach(y 

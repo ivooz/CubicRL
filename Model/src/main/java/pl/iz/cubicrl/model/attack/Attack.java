@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package pl.iz.cubicrl.model.core;
+package pl.iz.cubicrl.model.attack;
 
 import java.util.ArrayList;
 import pl.iz.cubicrl.model.effects.Effect;

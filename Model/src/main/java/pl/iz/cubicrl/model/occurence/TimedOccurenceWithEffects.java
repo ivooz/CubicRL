@@ -23,6 +23,7 @@ public class TimedOccurenceWithEffects extends OccurenceWithEffects {
 	public TimedOccurenceWithEffects(String name, Coords2D spriteSheetCoordinates, int timer) {
 		super(name, spriteSheetCoordinates);
 		effects = new ArrayList<>();
+		this.timer = timer;
 	}
 	
 	public int getTimer() {

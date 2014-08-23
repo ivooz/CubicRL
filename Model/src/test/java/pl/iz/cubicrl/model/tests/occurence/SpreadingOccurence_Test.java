@@ -1,4 +1,4 @@
-package pl.iz.cubicrl.model.tests;
+package pl.iz.cubicrl.model.tests.occurence;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,9 +6,6 @@ package pl.iz.cubicrl.model.tests;
  * and open the template in the editor.
  */
 
-import pl.iz.cubicrl.model.tests.TestFactory;
-import pl.iz.cubicrl.model.tests.RoomBaseTest;
-import pl.iz.cubicrl.model.tests.occurence.OccurenceVisualizer;
 import java.util.stream.IntStream;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -20,6 +17,8 @@ import pl.iz.cubicrl.model.enums.DamageType;
 import pl.iz.cubicrl.model.enums.LifeStat;
 import pl.iz.cubicrl.model.field.PenetrableField;
 import pl.iz.cubicrl.model.occurence.SpreadingOccurence;
+import pl.iz.cubicrl.model.tests.RoomBaseTest;
+import pl.iz.cubicrl.model.tests.TestFactory;
 
 /**
  *
@@ -50,7 +49,7 @@ public class SpreadingOccurence_Test extends RoomBaseTest {
 		OccurenceVisualizer visualizer = new OccurenceVisualizer(room);
 		IntStream.range(0, 10).forEach(i -> {
 			room.nextTurnNotify();
-			visualizer.visualize();
+			//visualizer.visualize();
 			IntStream.range(0, 10).forEach(x -> IntStream.range(0, 10).forEach(y -> assertTrue(room.getFieldAt(new Coords2D(x, y)).getOccurences().size() <= 1)));
 		});
 		assertTrue(testCreature.getEffectiveStat(LifeStat.HP)<initialHP);

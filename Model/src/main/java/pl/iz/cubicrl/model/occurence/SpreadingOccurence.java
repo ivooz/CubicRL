@@ -54,7 +54,7 @@ public class SpreadingOccurence extends TimedOccurenceWithEffects {
 			Random random = new Random();
 			ArrayList<Field> neighbouringFields = room.getNeighbouringFields(field);
 			neighbouringFields.stream().forEach(f -> {
-				if (random.nextInt(100) < spreadChance) {
+				if (f instanceof PenetrableField && random.nextInt(100) < spreadChance) {
 					f.addOccurence(new SpreadingOccurence(name, spriteSheetCoordinates, room, spreadChance,initialTimer-degradationRate, degradationRate));
 				}
 			});
