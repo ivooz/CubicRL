@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.iz.cubicrl.model.api.trap;
+package pl.iz.cubicrl.model.trap;
 
 import java.util.Random;
 import pl.iz.cubicrl.model.api.VisitorAdapter;
@@ -49,8 +49,8 @@ public class RoomTrap extends VisitorAdapter {
 	 * @param mobility by how much the spawn places are shifting
 	 * (effectively this parameter is adding to sum of coordinates each
 	 * turn)
-	 * @param instability modeulo factor is mo number between [-instability;instability]
-	 * is su
+	 * @param instability modeulo factor is mo number between
+	 * [-instability;instability] is su
 	 */
 	public RoomTrap(int testFrequency, int testDifficulty, Enum testedStatistic,
 		int moduloFactor, int frequency, int mobility, int instability) {
@@ -74,16 +74,18 @@ public class RoomTrap extends VisitorAdapter {
 	 * @return
 	 */
 	protected boolean isEligibleForTrap(Field field, int disturbance) {
-		return (field instanceof PenetrableField      
+		return (field instanceof PenetrableField
 			&& (field.getRoomCoords().x + field.getRoomCoords().y
-			+ deviation) % (moduloFactor + disturbance) == 0);
+			+ deviation) % ((moduloFactor + disturbance) == 0 
+			? 1 
+			: (moduloFactor + disturbance)) == 0);
 	}
 
 	@Override
 	public void visit(Room room) {
 		if (timer % frequency == 0) {
 			Random random = new Random();
-			int disturbance = instability > 0 ? random.nextInt(instability+1) - instability : 0;
+			int disturbance = instability > 0 ? random.nextInt(instability + 1) - instability : 0;
 			room.getFieldsAsParallelStream()
 				.filter(f -> isEligibleForTrap(f, disturbance))
 				.forEach(f -> f.addOccurence(occurence.copy()));

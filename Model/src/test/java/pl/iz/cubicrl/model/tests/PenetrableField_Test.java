@@ -6,7 +6,6 @@ package pl.iz.cubicrl.model.tests;
  * and open the template in the editor.
  */
 
-import pl.iz.cubicrl.model.tests.TestFactory;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertFalse;
@@ -15,6 +14,7 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import pl.iz.cubicrl.model.core.Coords2D;
 import pl.iz.cubicrl.model.creature.Creature;
 import pl.iz.cubicrl.model.items.Item;
 import pl.iz.cubicrl.model.field.PenetrableField;
@@ -41,7 +41,7 @@ public class PenetrableField_Test {
 
 	@Before
 	public void setUp() {
-		testField = new PenetrableField("test", null, null);
+		testField = new PenetrableField("test", new Coords2D(0,0),new Coords2D(0,0),TestFactory.getInstance().eventBus);
 	}
 
 	@After

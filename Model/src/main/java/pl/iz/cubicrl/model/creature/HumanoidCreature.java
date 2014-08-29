@@ -8,6 +8,7 @@ package pl.iz.cubicrl.model.creature;
 import pl.iz.cubicrl.model.items.ItemHolder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.validation.constraints.NotNull;
 import pl.iz.cubicrl.model.attack.Attack;
 import pl.iz.cubicrl.model.enums.Attribute;
 import pl.iz.cubicrl.model.enums.DamageType;
@@ -25,11 +26,33 @@ public class HumanoidCreature extends Creature {
 
 	private final ItemHolder itemHolder;
 
-	public HumanoidCreature(String name, int[] attri, int[] sklls, int[] lifeStatsLimits, int[] rsistancs, int[] secondaries) {
+	/**
+	 * Initial values of statistics should be passed as parameters. Values
+	 * in array corresponds to the ordering of Enum values. Humanoid's
+	 * damage is computed from its stats and weapons. They can also equip
+	 * items and have an inventory.
+	 *
+	 * @param name of the creature, must be unique
+	 * @param attri initial values of attributes
+	 * [STRNGTH,DXTRT,SPD,CNST,INTL,CHA]
+	 * @param sklls initial values of skills
+	 * [DDG,THRWNG,PRJCTL,SPCH,MATH,SNEAK]
+	 * @param lifeStatsLimits initial values of lifeStats
+	 * [MAXHP,MAXSAN,MAXHUNGER,MAXTHRST]
+	 * @param rsistancs initial values of resistances
+	 * [BLNT,PRCNG,SLSHNG,HT,CLD,CHMCL,PSCHC]
+	 * @param secondaries value of secondary stats [AC]
+	 */
+	public HumanoidCreature(@NotNull String name,
+				@NotNull int[] attri,
+				@NotNull int[] sklls,
+				@NotNull int[] lifeStatsLimits,
+				@NotNull int[] rsistancs,
+				@NotNull int[] secondaries) {
 		super(name, attri, sklls, lifeStatsLimits, rsistancs, secondaries, null);
 		itemHolder = new ItemHolder();
 	}
-
+	
 	@Override
 	public int getEffectiveStat(Enum e) {
 		return super.getEffectiveStat(e) + itemHolder.getStatModification(e);
@@ -69,7 +92,7 @@ public class HumanoidCreature extends Creature {
 		int damage = getEffectiveStat(Attribute.STRENGTH);
 		if (weapon != null) {
 			damage += weapon.getDamage();
-		} 
+		}
 		DamageType damageType = weapon.getDamageType();
 		Attack attack = new Attack(computeAccuracy(), damage, damageType);
 		weapon.getEffects().forEach(e -> attack.addEffect(e));
@@ -77,8 +100,8 @@ public class HumanoidCreature extends Creature {
 	}
 
 	private int computeAccuracy() {
-		return getEffectiveStat(Attribute.DEXTERITY) * 
-			Integer.parseInt(PropertyLoader.getInstance().loadProperty("accuracyPerDex"));
+		return getEffectiveStat(Attribute.DEXTERITY)
+			* Integer.parseInt(PropertyLoader.getInstance().loadProperty("accuracyPerDex"));
 	}
 
 }

@@ -15,6 +15,7 @@ import pl.iz.cubicrl.model.core.Coords2D;
 import pl.iz.cubicrl.model.items.Item;
 import pl.iz.cubicrl.model.field.PenetrableField;
 import pl.iz.cubicrl.model.items.ItemWithEffects;
+import pl.iz.cubicrl.model.tests.TestFactory;
 
 /**
  *
@@ -45,7 +46,7 @@ public class Item_Test {
 	public void testItemOnField_addingAndRemovingItemsFromFieldVerifyingBehavior() {
 		Item testItem1 = new ItemWithEffects("test", null);
 		Item testItem2 = new ItemWithEffects("test", null);
-		PenetrableField field = new PenetrableField("test", null,null);
+		PenetrableField field = TestFactory.getInstance().getGenericPenetrableField();
 		field.addItem(testItem1);
 		field.addItem(testItem2);
 		assert (field.getTopItem() == testItem2);

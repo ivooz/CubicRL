@@ -12,12 +12,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import org.junit.Before;
 import org.junit.Test;
-import pl.iz.cubicrl.model.core.Coords2D;
 import pl.iz.cubicrl.model.effects.TimedEffect;
 import pl.iz.cubicrl.model.enums.Attribute;
 import pl.iz.cubicrl.model.field.PenetrableField;
 import pl.iz.cubicrl.model.occurence.TimedOccurenceWithEffects;
 import pl.iz.cubicrl.model.tests.CreatureBaseTest;
+import pl.iz.cubicrl.model.tests.TestFactory;
 
 /**
  *
@@ -30,7 +30,7 @@ public class TimedOccurenceWithEffects_Test extends CreatureBaseTest {
 	@Before
 	public void setUp() {
 		super.setUp();
-		penetrableField = new PenetrableField(null, new Coords2D(1, 1), null);
+		penetrableField = TestFactory.getInstance().getGenericPenetrableField();
 	}
 
 	@Test

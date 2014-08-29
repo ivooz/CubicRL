@@ -9,6 +9,8 @@ package pl.iz.cubicrl.model.tests;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.IntStream;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -18,6 +20,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import pl.iz.cubicrl.model.api.TurnObserver;
 import pl.iz.cubicrl.model.core.Coordinates3D;
+import pl.iz.cubicrl.model.core.GameEventBus;
 import pl.iz.cubicrl.model.core.GameWorld;
 import pl.iz.cubicrl.model.util.PropertyLoader;
 
@@ -43,7 +46,13 @@ public class GameWorld_Test {
 
 	@Before
 	public void setUp() {
-		resetGameWorldField();
+		try {
+			gameWorld = new GameWorld(TestFactory.getInstance().getGenericPlayer(),new GameEventBus());
+		} catch (IOException ex) {
+			Logger.getLogger(GameWorld_Test.class.getName()).log(Level.SEVERE, null, ex);
+			System.out.println(ex.getMessage());
+			fail();
+		}
 		propLoader = PropertyLoader.getInstance();
 	}
 
@@ -51,14 +60,6 @@ public class GameWorld_Test {
 	public void tearDown() {
 	}
 
-	private void resetGameWorldField() {
-		try {
-			gameWorld = GameWorld.getInstance();
-		} catch (IOException ex) {
-			System.out.println("Failed to create GameWorld! Reason:" + ex.getMessage());
-			fail();
-		}
-	}
 
 	public void testGameDateTime_validatingInitialSettings() {
 		LocalDateTime initialGameTime = gameWorld.getGameDateTime();
@@ -89,17 +90,6 @@ public class GameWorld_Test {
 		assert (initialTime.plusSeconds(secondsPerTurn).equals(gameWorld.getGameDateTime()));
 	}
 
-	@Test
-	public void testResettingGameState_resettingAndCheckingIfInitializedProperly() {
-		try {
-			gameWorld.reset();
-		} catch (IOException ex) {
-			System.out.println("Failed to reset GameState! Reason:" + ex.getMessage());
-			fail();
-		}
-		resetGameWorldField();
-		testGameDateTime_validatingInitialSettings();
-	}
 
 	@Test
 	public void testRoomInitialization_checkingIfRoomInstancesAreCreatedProperly() {

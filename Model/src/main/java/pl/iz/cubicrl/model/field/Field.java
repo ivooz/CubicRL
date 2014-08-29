@@ -10,6 +10,7 @@ import java.util.Stack;
 import pl.iz.cubicrl.model.api.TurnObserver;
 import pl.iz.cubicrl.model.api.Visitor;
 import pl.iz.cubicrl.model.core.Coords2D;
+import pl.iz.cubicrl.model.core.GameEventBus;
 
 /**
  * Represents a tiled space on map.
@@ -21,6 +22,7 @@ public class Field implements TurnObserver {
 	protected final Coords2D roomCoordinates;
 	private final Coords2D spriteSheetCoordinates;
 	protected final Stack<Occurence> occurences;
+	protected final GameEventBus eventBus;
 	private final String name;
 	private boolean visible;
 	private boolean visited;
@@ -30,9 +32,12 @@ public class Field implements TurnObserver {
 	 * @param name identifies a type
 	 * @param roomCoordinates location in the room
 	 * @param spriteSheetCoordinates location of graphics on spritesheet
+	 * @param eventBus used for publishing in game events
 	 */
-	public Field(String name, Coords2D roomCoordinates, Coords2D spriteSheetCoordinates) {
+	public Field(String name, Coords2D roomCoordinates, Coords2D spriteSheetCoordinates,
+			GameEventBus eventBus) {
 		this.name = name;
+		this.eventBus = eventBus;
 		this.roomCoordinates = roomCoordinates;
 		this.spriteSheetCoordinates = spriteSheetCoordinates;
 		occurences = new Stack<>();
@@ -56,6 +61,10 @@ public class Field implements TurnObserver {
 
 	public Coords2D getRoomCoords() {
 		return roomCoordinates;
+	}
+
+	public GameEventBus getEventBus() {
+		return eventBus;
 	}
 
 	/**

@@ -8,13 +8,14 @@ package pl.iz.cubicrl.model.occurence;
 import java.util.ArrayList;
 import pl.iz.cubicrl.model.attack.Attack;
 import pl.iz.cubicrl.model.core.Coords2D;
+import pl.iz.cubicrl.model.creature.Creature;
 import pl.iz.cubicrl.model.field.PenetrableField;
 import pl.iz.cubicrl.model.effects.Effect;
 import pl.iz.cubicrl.model.effects.TimedEffect;
 
 /**
- * Occurences that affect creatures in a visited field somehow. Occurences
- * with effects should only be added to PenetrableFields or they will no work 
+ * Occurences that affect creatures in a visited field somehow. Occurences with
+ * effects should only be added to PenetrableFields or they will no work
  * properly.
  *
  * @author Ivo
@@ -23,11 +24,13 @@ public class OccurenceWithEffects extends Occurence {
 
 	private final ArrayList<Effect> effects;
 	private final ArrayList<Attack> attacks;
+	protected boolean actedThisTurn;
 
 	public OccurenceWithEffects(String name, Coords2D spriteSheetCoordinates) {
 		super(name, spriteSheetCoordinates);
 		effects = new ArrayList<>();
 		attacks = new ArrayList<>();
+		actedThisTurn = false;
 	}
 
 	/**
@@ -53,12 +56,26 @@ public class OccurenceWithEffects extends Occurence {
 		attacks.add(attack);
 		return this;
 	}
-	
+
+	@Override
+	public void visit(Creature creature) {
+		if (!actedThisTurn) {
+			actedThisTurn=true;
+			effects.forEach(e -> creature.addEffect(e.copy()));
+			attacks.forEach(a -> creature.attack(a));
+		}
+	}
+
 	@Override
 	public void visit(PenetrableField field) {
 		if (field.hasResident()) {
-			effects.forEach(e -> field.getResident().addEffect(e.copy()));
-			attacks.forEach(a -> field.getResident().attack(a));
+			visit(field.getResident());
 		}
+	}
+
+	@Override
+	public void nextTurnNotify() {
+		super.nextTurnNotify();
+		actedThisTurn = false;
 	}
 }

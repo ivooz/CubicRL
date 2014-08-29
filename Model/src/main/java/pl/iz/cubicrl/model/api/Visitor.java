@@ -11,7 +11,7 @@ import pl.iz.cubicrl.model.items.Item;
 import pl.iz.cubicrl.model.occurence.Occurence;
 import pl.iz.cubicrl.model.field.PenetrableField;
 import pl.iz.cubicrl.model.core.Room;
-import pl.iz.cubicrl.model.api.trap.Trap;
+import pl.iz.cubicrl.model.trap.Trap;
 
 /**
  * Allows for implementation of visitor pattern for various game entities

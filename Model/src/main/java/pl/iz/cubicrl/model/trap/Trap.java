@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package pl.iz.cubicrl.model.api.trap;
+package pl.iz.cubicrl.model.trap;
 
 /**
  * Can be either a room trap or a field trap. 

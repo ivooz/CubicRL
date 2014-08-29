@@ -7,8 +7,8 @@
 package pl.iz.cubicrl.model.api;
 
 /**
- * Allows for implementation of Observer pattern in regard to passing of turns
- * @author Ivo
+ * Allows for implementation of Observer pattern in regard to passing of turns.
+ * @author Ivo Z
  */
 @FunctionalInterface
 public interface TurnObserver {

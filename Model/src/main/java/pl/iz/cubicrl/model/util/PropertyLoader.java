@@ -5,6 +5,7 @@
  */
 package pl.iz.cubicrl.model.util;
 
+import com.google.inject.Singleton;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
  *
  * @author Ivo
  */
+@Singleton
 public class PropertyLoader {
 
 	private static PropertyLoader instance;
@@ -26,7 +28,7 @@ public class PropertyLoader {
 	private PropertyLoader() {
 		properties = new Properties();
 		try {
-			properties.load(new FileInputStream("./config/game.properties"));
+			properties.load(new FileInputStream("../config/game.properties"));
 		} catch (IOException ex) {
 			Logger.getLogger(PropertyLoader.class.getName()).log(Level.SEVERE, null, ex);
 		}

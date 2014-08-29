@@ -37,7 +37,7 @@ public class Field_Test {
 
 	@Before
 	public void setUp() {
-		testField = new Field("test", new Coords2D(6, 6), new Coords2D(7, 7));
+		testField = new Field("test", new Coords2D(6, 6), new Coords2D(7, 7),TestFactory.getInstance().eventBus);
 	}
 
 	@After

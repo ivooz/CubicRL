@@ -5,11 +5,16 @@
  */
 package pl.iz.cubicrl.model.field;
 
+import java.util.ArrayList;
 import pl.iz.cubicrl.model.items.Item;
 import java.util.Stack;
+import javax.validation.constraints.NotNull;
 import pl.iz.cubicrl.model.api.Visitor;
 import pl.iz.cubicrl.model.core.Coords2D;
+import pl.iz.cubicrl.model.core.GameEventBus;
 import pl.iz.cubicrl.model.creature.Creature;
+import pl.iz.cubicrl.model.occurence.FieldTrap;
+import pl.iz.cubicrl.model.occurence.Occurence;
 
 /**
  * Specific Field, which can contain Items and Creatures
@@ -20,10 +25,22 @@ public class PenetrableField extends Field {
 
 	Creature resident;
 	Stack<Item> items;
+	ArrayList<FieldTrap> traps;
 
-	public PenetrableField(String name, Coords2D roomCoordinates, Coords2D spriteSheetCoordinates) {
-		super(name, roomCoordinates, spriteSheetCoordinates);
+	/**
+	 * Field that can hold items, timedOccurences and Creatures
+	 * @param name
+	 * @param roomCoordinates
+	 * @param spriteSheetCoordinates
+	 * @param eventBus
+	 */
+	public PenetrableField(@NotNull String name,
+		@NotNull Coords2D roomCoordinates,
+		Coords2D spriteSheetCoordinates,
+		@NotNull GameEventBus eventBus) {
+		super(name, roomCoordinates, spriteSheetCoordinates, eventBus);
 		items = new Stack<>();
+		traps = new ArrayList<>();
 	}
 
 	public void addItem(Item item) {
@@ -71,6 +88,7 @@ public class PenetrableField extends Field {
 	}
 
 	private void processNewResident() {
+		occurences.forEach(o -> o.visit(resident));
 	}
 
 	public void removeResident() {
@@ -78,11 +96,31 @@ public class PenetrableField extends Field {
 	}
 
 	@Override
+	public void addOccurence(Occurence occurence) {
+		super.addOccurence(occurence); 
+		if(hasResident()) {
+			occurence.visit(resident);
+		}
+	}
+
+	
+
+	@Override
 	public void nextTurnNotify() {
 		occurences.removeIf(o -> o.isExpired());
 		occurences.forEach(o -> o.visit(this));
-		if(hasResident()) {
+		if (hasResident()) {
 			resident.nextTurnNotify();
 		}
+		occurences.forEach(o -> o.nextTurnNotify());
+	}
+
+	public void addTrap(FieldTrap trap) {
+		traps.add(trap);
+		occurences.add(trap);
+	}
+
+	public ArrayList<FieldTrap> getTraps() {
+		return traps;
 	}
 }

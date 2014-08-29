@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import javax.validation.constraints.NotNull;
 import pl.iz.cubicrl.model.api.TurnObserver;
-import pl.iz.cubicrl.model.api.trap.RoomTrap;
+import pl.iz.cubicrl.model.trap.RoomTrap;
 import pl.iz.cubicrl.model.creature.Creature;
 import pl.iz.cubicrl.model.enums.Direction;
 import pl.iz.cubicrl.model.field.Field;
@@ -60,6 +60,7 @@ public class Room implements TurnObserver {
 
 	/**
 	 * Returns neigboring fields, currently used by spreading effects.
+	 *
 	 * @param field
 	 * @return
 	 */
@@ -80,7 +81,8 @@ public class Room implements TurnObserver {
 		return returnedFields;
 	}
 
-	private Portal getEntrance(Direction direction) {
+	public Portal getEntrance(Direction direction) {
+		//Move this one to Portal? A bit unintuitive...
 		return entrances.get(Direction.class.getEnumConstants()[(direction.ordinal() + 3) % 6]);
 	}
 
@@ -88,38 +90,45 @@ public class Room implements TurnObserver {
 		return entrances;
 	}
 
+	/**
+	 * Puts creature in the room in the direction that is opposite to the
+	 * one given in parameter. Creature going south will be placed at the
+	 * northern entrance.
+	 *
+	 * @param creature
+	 * @param direction
+	 */
 	public void welcomeCreature(Creature creature, Direction direction) {
 		//Set current room to this room, will be useful in gui
 		creature.visit(this);
-		//TODO: trap activation
 		getEntrance(direction).accept(creature);
-	}
-
-	public void addCreature(Creature creature) {
 		visitingCreatures.add(creature);
-	}
-
-	public void removeCreture(Creature creature) {
-		visitingCreatures.remove(creature);
 	}
 
 	public void addRoomTrap(RoomTrap RoomTrap) {
 		roomTraps.add(RoomTrap);
 	}
-	
+
 	/**
 	 * Only for thread-safe operations
-	 * @return 
+	 *
+	 * @return
 	 */
 	public Stream<Field> getFieldsAsParallelStream() {
 		return Arrays.stream(fields).flatMap(fArr -> Arrays.stream(fArr)).parallel();
 	}
-	
+
 	/**
-	 * For thread unsafe operations, if thread safe use parallel stream version.
-	 * @return 
+	 * For thread unsafe operations, if thread safe use parallel stream
+	 * version.
+	 *
+	 * @return
 	 */
 	public Stream<Field> getFieldsAsStream() {
 		return Arrays.stream(fields).flatMap(fArr -> Arrays.stream(fArr));
+	}
+
+	public ArrayList<Creature> getVisitingCreatures() {
+		return visitingCreatures;
 	}
 }

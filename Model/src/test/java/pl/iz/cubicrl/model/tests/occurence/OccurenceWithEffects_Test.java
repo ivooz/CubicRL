@@ -29,7 +29,7 @@ public class OccurenceWithEffects_Test extends CreatureBaseTest {
 	@Override
 	public void setUp() {
 		super.setUp();
-		testField = new PenetrableField(null, new Coords2D(1, 1), null);
+		testField = new PenetrableField(null, new Coords2D(1, 1), null,null);
 		testOccurence = new OccurenceWithEffects("test1", null);
 		DamagingTimedEffect timedEffect = new DamagingTimedEffect("test1", DamageType.HEAT, 2, 5);
 		testOccurence.addEffect(timedEffect);

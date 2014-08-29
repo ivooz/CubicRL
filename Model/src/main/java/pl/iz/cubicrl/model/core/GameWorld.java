@@ -5,10 +5,12 @@
  */
 package pl.iz.cubicrl.model.core;
 
+import com.google.inject.Inject;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import pl.iz.cubicrl.model.api.TurnObserver;
+import pl.iz.cubicrl.model.creature.Player;
 import pl.iz.cubicrl.model.util.PropertyLoader;
 
 /**
@@ -18,21 +20,25 @@ import pl.iz.cubicrl.model.util.PropertyLoader;
  */
 public class GameWorld implements TurnObserver {
 
-	private static GameWorld instance;
 	private LocalDateTime gameDateTime;
+	private Player player;
+	private GameEventBus eventBus;
 	private int turnCount;
-	private final int secondsPerTurn;
-	private final Cube cube;
+	private int secondsPerTurn;
+	private Cube cube;
 
 	/**
 	 * Loads configuration from the properties.config and initializes game
 	 * world. It does not create the rooms, just the skeleton of the world.
 	 * Implements Singleton pattern.
 	 *
+	 * @param player
+	 * @param eventBus
 	 * @throws IOException if properties are not loaded properly from the
 	 * config file
 	 */
-	private GameWorld() throws IOException {
+	@Inject
+	public GameWorld(Player player, GameEventBus eventBus) throws IOException {
 		PropertyLoader propLoader = PropertyLoader.getInstance();
 		int year = Integer.parseInt(propLoader.loadProperty("startYear"));
 		int month = Integer.parseInt(propLoader.loadProperty("startMonth"));
@@ -41,24 +47,17 @@ public class GameWorld implements TurnObserver {
 		secondsPerTurn = Integer.parseInt(propLoader.loadProperty("secondsPerTurn"));
 		turnCount = 0;
 		cube = new Cube(Integer.parseInt(propLoader.loadProperty("cubeEdgeSize")));
+		this.eventBus=eventBus;
+		this.player=player;
 	}
 
-	/**
-	 * Returns the only instance of GameWorld
-	 *
-	 * @return the only instance
-	 * @throws IOException
-	 */
-	public static GameWorld getInstance() throws IOException {
-		if (instance == null) {
-			instance = new GameWorld();
-		}
-		return instance;
+	private GameWorld() {
 	}
-
+	
+	
 	/**
 	 * 
-	 * @return current world game and time
+	 * @return current world gamve and time
 	 */
 	public LocalDateTime getGameDateTime() {
 		return gameDateTime;
@@ -74,12 +73,19 @@ public class GameWorld implements TurnObserver {
 		turnCount++;
 	}
 
-	public void reset() throws IOException {
-		instance = new GameWorld();
-	}
-
 	public Room getRoom(Coordinates3D coords) {
 		return cube.getRoomAt(coords);
 	}
 
+	public Player getPlayer() {
+		return player;
+	}
+
+	public GameEventBus getEventBus() {
+		return eventBus;
+	}
+
+	public Cube getCube() {
+		return cube;
+	}
 }

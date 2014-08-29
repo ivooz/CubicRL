@@ -12,11 +12,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
-import pl.iz.cubicrl.model.api.trap.RoomTrap;
-import pl.iz.cubicrl.model.core.Coords2D;
+import pl.iz.cubicrl.model.trap.RoomTrap;
 import pl.iz.cubicrl.model.core.Room;
 import pl.iz.cubicrl.model.creature.Creature;
 import pl.iz.cubicrl.model.enums.Attribute;
+import pl.iz.cubicrl.model.enums.Direction;
 import pl.iz.cubicrl.model.enums.LifeStat;
 import pl.iz.cubicrl.model.field.PenetrableField;
 import pl.iz.cubicrl.model.occurence.TimedOccurenceWithEffects;
@@ -42,7 +42,7 @@ public class RoomTrap_Test {
 		factory = TestFactory.getInstance();
 		testRoom = factory.getGenericRoom();
 		testCreature = factory.getGenericCreature();
-		testRoom.addCreature(testCreature);
+		testRoom.welcomeCreature(testCreature, Direction.SOUTH);
 		visualizer = new OccurenceVisualizer(testRoom);
 	}
 
@@ -55,14 +55,13 @@ public class RoomTrap_Test {
 		//This trap should be activated immediately and leave occurances
 		//at every other field
 		RoomTrap testTrap = new RoomTrap(1, Integer.MAX_VALUE, Attribute.STRENGTH, 2, 2, 0, 0);
+		assertTrue(testRoom.getEntrance(Direction.SOUTH) instanceof PenetrableField);
 		//Occurence should last only one turn
 		TimedOccurenceWithEffects testOccurence = factory.getGenericTimedOccurenceWithEffects(1);
 		testOccurence.addEffect(factory.getWeakDamagingEffect());
 		int initialHP = testCreature.getEffectiveStat(LifeStat.HP);
 		testTrap.setOccurence(testOccurence);
 		testRoom.addRoomTrap(testTrap);
-		//Creature on this field should take 1 damage each turn as a result
-		((PenetrableField)testRoom.getFieldAt(new Coords2D(1,1))).addResident(testCreature);
 		IntStream.range(0, 20).forEach(i -> {
 			testRoom.nextTurnNotify();
 			//Uncomment for effect spread visualization in output

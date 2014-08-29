@@ -8,6 +8,7 @@ package pl.iz.cubicrl.model.occurence;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pl.iz.cubicrl.model.api.TurnObserver;
 import pl.iz.cubicrl.model.api.VisitorAdapter;
 import pl.iz.cubicrl.model.core.Coords2D;
 
@@ -15,7 +16,7 @@ import pl.iz.cubicrl.model.core.Coords2D;
  *
  * @author Ivo
  */
-public class Occurence extends VisitorAdapter implements Cloneable {
+public class Occurence extends VisitorAdapter implements Cloneable, TurnObserver {
 	
 	protected final String name;
 	protected final Coords2D spriteSheetCoordinates;
@@ -47,6 +48,10 @@ public class Occurence extends VisitorAdapter implements Cloneable {
 			Logger.getLogger(SpreadingOccurence.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return null;
+	}
+
+	@Override
+	public void nextTurnNotify() {
 	}
 	
 	

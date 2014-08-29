@@ -37,11 +37,7 @@ public class RoomBaseTest {
 
 	@Before
 	public void setUp() {
-		room = new Room(10,"test");
-		Field[][] fields = room.getFields();
-		IntStream.range(0, 10).forEach(x
-			-> IntStream.range(0, 10).forEach(y 
-				-> fields[x][y] = new PenetrableField("test", new Coords2D(x, y),new Coords2D(x, y))));
+		room = TestFactory.getInstance().getGenericRoom();
 	}
 
 	@After

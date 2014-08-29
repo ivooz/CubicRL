@@ -8,10 +8,12 @@ package pl.iz.cubicrl.model.creature;
 import pl.iz.cubicrl.model.effects.Effect;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.validation.constraints.NotNull;
 import pl.iz.cubicrl.model.api.TurnObserver;
 import pl.iz.cubicrl.model.api.Visitor;
 import pl.iz.cubicrl.model.api.VisitorAdapter;
 import pl.iz.cubicrl.model.attack.Attack;
+import pl.iz.cubicrl.model.core.Room;
 import pl.iz.cubicrl.model.enums.Attribute;
 import pl.iz.cubicrl.model.enums.DamageType;
 import pl.iz.cubicrl.model.enums.LifeStat;
@@ -30,8 +32,9 @@ public class Creature extends VisitorAdapter implements TurnObserver {
 	private final StatHolder statHolder;
 	private final String name;
 	private final ArrayList<Effect> effects;
-	private final ArrayList<Item> inventory;
 	private final Attack attack;
+	private Room room;
+	private PenetrableField field;
 
 	/**
 	 * Initial values of statistics should be passed as parameters. Values
@@ -46,14 +49,19 @@ public class Creature extends VisitorAdapter implements TurnObserver {
 	 * [MAXHP,MAXSAN,MAXHUNGER,MAXTHRST]
 	 * @param rsistancs initial values of resistances
 	 * [BLNT,PRCNG,SLSHNG,HT,CLD,CHMCL,PSCHC]
+	 * @param secondaries value of secondary stats [AC]
 	 * @param attack creature's attack
 	 */
-	public Creature(String name, int[] attri, int[] sklls, int[] lifeStatsLimits,
-		int[] rsistancs, int[] secondaries, Attack attack) {
+	public Creature(@NotNull String name,
+			@NotNull int[] attri,
+			@NotNull int[] sklls,
+			@NotNull int[] lifeStatsLimits,
+			@NotNull int[] rsistancs,
+			@NotNull int[] secondaries,
+			Attack attack) {
 		this.name = name;
 		effects = new ArrayList<>();
 		statHolder = new StatHolder(attri, sklls, lifeStatsLimits, rsistancs, secondaries);
-		inventory = new ArrayList<>();
 		this.attack = attack;
 	}
 
@@ -149,6 +157,14 @@ public class Creature extends VisitorAdapter implements TurnObserver {
 		statHolder.modifyStatValue(e, change);
 	}
 
+	public Room getRoom() {
+		return room;
+	}
+
+	public PenetrableField getField() {
+		return field;
+	}
+	
 	/**
 	 *
 	 * @param e
@@ -165,11 +181,12 @@ public class Creature extends VisitorAdapter implements TurnObserver {
 			//TODO: CHECK IF ENEMY
 			field.getResident().attack(computeAttack());
 		} else {
+			this.field=field;
 			field.addResident(this);
 		}
 	}
 
-	public void attack(Attack attack) {
+	public void attack(Attack attack)  {
 		//Trying to dodge
 		Random random = new Random();
 		int dodgingCapability = getEffectiveStat(Attribute.SPEED)
@@ -191,6 +208,14 @@ public class Creature extends VisitorAdapter implements TurnObserver {
 
 	protected Attack computeAttack() {
 		return attack;
+	}
+
+	@Override
+	public void visit(Room room) {
+		if(room!=null) {
+			room.getVisitingCreatures().remove(this);
+		}
+		this.room = room;
 	}
 
 }
