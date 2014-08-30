@@ -5,6 +5,7 @@
  */
 package pl.iz.cubicrl.model.creature;
 
+import java.io.Serializable;
 import pl.iz.cubicrl.model.effects.Effect;
 import java.util.ArrayList;
 import java.util.Random;
@@ -27,7 +28,7 @@ import pl.iz.cubicrl.model.util.PropertyLoader;
  *
  * @author Ivo
  */
-public class Creature extends VisitorAdapter implements TurnObserver {
+public class Creature extends VisitorAdapter implements TurnObserver,Serializable {
 
 	private final StatHolder statHolder;
 	private final String name;

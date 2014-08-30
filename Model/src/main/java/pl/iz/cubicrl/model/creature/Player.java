@@ -33,4 +33,5 @@ public class Player extends HumanoidCreature {
 	public Player(CreatureStats stats) {
 		super(stats.defaultName, stats.attributes, stats.skills, stats.lifestats, stats.resistances, stats.secondaries);
 	}
+
 }

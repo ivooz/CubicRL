@@ -5,6 +5,7 @@
  */
 package pl.iz.cubicrl.model.effects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +19,7 @@ import pl.iz.cubicrl.model.api.VisitorAdapter;
  *
  * @author Ivo
  */
-public class Effect extends VisitorAdapter implements Cloneable {
+public class Effect extends VisitorAdapter implements Cloneable,Serializable {
 
 	private final ArrayList<Pair<Enum, Integer>> modifierList;
 	private final String name;

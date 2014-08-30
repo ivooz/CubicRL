@@ -27,7 +27,7 @@ public class TimedEffect extends Effect {
 	}
 
 	/**
-	 * TimedEffect removes itself from the Effects list when the timer is
+	 * TimedEffect is removed from the Effects list when the timer is
 	 * up.
 	 *
 	 * @param creature which the effect concerns

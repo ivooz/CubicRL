@@ -6,11 +6,13 @@
 
 package pl.iz.cubicrl.model.core;
 
+import java.io.Serializable;
+
 /**
  * Simple encapsulating class for integer coordinates in 3d space.
  * @author Ivo
  */
-public class Coordinates3D {
+public class Coordinates3D implements Serializable {
 	public final int x,y,z;
 
 	public Coordinates3D(int x, int y, int z) {

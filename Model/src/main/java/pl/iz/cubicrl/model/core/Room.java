@@ -5,6 +5,7 @@
  */
 package pl.iz.cubicrl.model.core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ import pl.iz.cubicrl.model.field.Portal;
  *
  * @author Ivo
  */
-public class Room implements TurnObserver {
+public class Room implements TurnObserver,Serializable {
 
 	private final String name;
 	private final Field[][] fields;

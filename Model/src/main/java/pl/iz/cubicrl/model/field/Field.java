@@ -5,6 +5,7 @@
  */
 package pl.iz.cubicrl.model.field;
 
+import java.io.Serializable;
 import pl.iz.cubicrl.model.occurence.Occurence;
 import java.util.Stack;
 import pl.iz.cubicrl.model.api.TurnObserver;
@@ -17,12 +18,12 @@ import pl.iz.cubicrl.model.core.GameEventBus;
  *
  * @author Ivo
  */
-public class Field implements TurnObserver {
+public class Field implements TurnObserver, Serializable {
 
 	protected final Coords2D roomCoordinates;
 	private final Coords2D spriteSheetCoordinates;
 	protected final Stack<Occurence> occurences;
-	protected final GameEventBus eventBus;
+	transient protected GameEventBus eventBus;
 	private final String name;
 	private boolean visible;
 	private boolean visited;
@@ -35,7 +36,7 @@ public class Field implements TurnObserver {
 	 * @param eventBus used for publishing in game events
 	 */
 	public Field(String name, Coords2D roomCoordinates, Coords2D spriteSheetCoordinates,
-			GameEventBus eventBus) {
+		GameEventBus eventBus) {
 		this.name = name;
 		this.eventBus = eventBus;
 		this.roomCoordinates = roomCoordinates;
@@ -142,4 +143,16 @@ public class Field implements TurnObserver {
 		occurences.forEach(o -> o.visit(this));
 		occurences.removeIf(o -> o.isExpired());
 	}
+
+	/**
+	 * For use only during deserialization
+	 * @param eventBus 
+	 */
+	public void setEventBus(GameEventBus eventBus) {
+		if (this.eventBus == null) {
+			this.eventBus = eventBus;
+		}
+	}
+	
+	
 }

@@ -5,12 +5,14 @@
  */
 package pl.iz.cubicrl.model.core;
 
+import java.io.Serializable;
+
 /**
  * A container for rooms representing in-game world.
  *
  * @author Ivo
  */
-public class Cube {
+public class Cube implements Serializable {
 
 	Room rooms[][][];
 

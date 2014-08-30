@@ -61,33 +61,11 @@ public class GameWorld_Test {
 	}
 
 
-	public void testGameDateTime_validatingInitialSettings() {
-		LocalDateTime initialGameTime = gameWorld.getGameDateTime();
-		int year = Integer.parseInt(propLoader.loadProperty("startYear"));
-		int month = Integer.parseInt(propLoader.loadProperty("startMonth"));
-		int day = Integer.parseInt(propLoader.loadProperty("startDay"));
-		assert (initialGameTime.getMonth() == Month.of(month));
-		assert (initialGameTime.getYear() == year);
-		assert (initialGameTime.getDayOfMonth() == day);
-		assert (initialGameTime.getHour() == 0);
-		assert (initialGameTime.getMinute() == 0);
-		assert (gameWorld.getTurnCount() == 0);
-	}
-
 	@Test
 	public void testNextTurnNotification_registeringObserversNotifyingAndUnregistering() {
 		int initialTurn = gameWorld.getTurnCount();
 		gameWorld.nextTurnNotify();
 		assert (gameWorld.getTurnCount() == (initialTurn + 1));
-	}
-
-	@Test
-	public void testNextTurnTimeUnit_nextingTurnAndComparingTimeDifferences() {
-		LocalDateTime gameTime = gameWorld.getGameDateTime();
-		LocalDateTime initialTime = LocalDateTime.of(gameTime.toLocalDate(), gameTime.toLocalTime());
-		int secondsPerTurn = Integer.parseInt(propLoader.loadProperty("secondsPerTurn"));
-		gameWorld.nextTurnNotify();
-		assert (initialTime.plusSeconds(secondsPerTurn).equals(gameWorld.getGameDateTime()));
 	}
 
 

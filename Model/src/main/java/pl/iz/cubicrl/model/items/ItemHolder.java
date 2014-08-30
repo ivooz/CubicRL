@@ -5,6 +5,7 @@
  */
 package pl.iz.cubicrl.model.items;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import pl.iz.cubicrl.model.enums.ItemSlot;
@@ -14,7 +15,7 @@ import pl.iz.cubicrl.model.enums.ItemSlot;
  *
  * @author Ivo
  */
-public class ItemHolder {
+public class ItemHolder implements Serializable {
 
 	private final HashMap<ItemSlot, EquipableItem> equippedItems;
 	private final ArrayList<Item> inventory;

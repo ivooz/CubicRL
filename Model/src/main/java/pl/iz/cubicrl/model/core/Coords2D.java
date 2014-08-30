@@ -6,11 +6,13 @@
 
 package pl.iz.cubicrl.model.core;
 
+import java.io.Serializable;
+
 /**
  * Simple encapsulating class for iteger coordinates on 2d plane.
  * @author Ivo
  */
-public class Coords2D {
+public class Coords2D implements Serializable {
 
 	public final int x,y;
 

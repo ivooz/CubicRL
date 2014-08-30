@@ -9,6 +9,8 @@ import com.google.inject.Inject;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import pl.iz.cubicrl.model.api.TurnObserver;
 import pl.iz.cubicrl.model.creature.Player;
 import pl.iz.cubicrl.model.util.PropertyLoader;
@@ -20,7 +22,7 @@ import pl.iz.cubicrl.model.util.PropertyLoader;
  */
 public class GameWorld implements TurnObserver {
 
-	private LocalDateTime gameDateTime;
+	private Calendar gameTime;
 	private Player player;
 	private GameEventBus eventBus;
 	private int turnCount;
@@ -43,7 +45,10 @@ public class GameWorld implements TurnObserver {
 		int year = Integer.parseInt(propLoader.loadProperty("startYear"));
 		int month = Integer.parseInt(propLoader.loadProperty("startMonth"));
 		int day = Integer.parseInt(propLoader.loadProperty("startDay"));
-		gameDateTime = LocalDateTime.of(year, month, day, 0, 0);
+		gameTime = GregorianCalendar.getInstance();
+		gameTime.set(GregorianCalendar.YEAR, year);
+		gameTime.set(GregorianCalendar.MONTH, month);
+		gameTime.set(GregorianCalendar.DATE, day);
 		secondsPerTurn = Integer.parseInt(propLoader.loadProperty("secondsPerTurn"));
 		turnCount = 0;
 		cube = new Cube(Integer.parseInt(propLoader.loadProperty("cubeEdgeSize")));
@@ -56,11 +61,11 @@ public class GameWorld implements TurnObserver {
 	
 	
 	/**
-	 * 
+	 * Do not change the time :)
 	 * @return current world gamve and time
 	 */
-	public LocalDateTime getGameDateTime() {
-		return gameDateTime;
+	public Calendar getGameDateTime() {
+		return gameTime;
 	}
 
 	public int getTurnCount() {
@@ -69,7 +74,7 @@ public class GameWorld implements TurnObserver {
 
 	@Override
 	public void nextTurnNotify() {
-		gameDateTime = gameDateTime.plus(secondsPerTurn, ChronoUnit.SECONDS);
+		gameTime.add(GregorianCalendar.SECOND,secondsPerTurn);
 		turnCount++;
 	}
 

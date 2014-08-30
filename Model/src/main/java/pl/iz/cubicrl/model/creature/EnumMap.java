@@ -5,6 +5,7 @@
  */
 package pl.iz.cubicrl.model.creature;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ import java.util.Map;
  * @author Ivo
  * @param <E> type of enumerated statistic
  */
-public class EnumMap<E extends Enum<E>> {
+public class EnumMap<E extends Enum<E>> implements Serializable {
 
 	/**
 	 * Maps enumerated statistics to their values

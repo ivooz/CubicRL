@@ -5,6 +5,7 @@
  */
 package pl.iz.cubicrl.model.creature;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import pl.iz.cubicrl.model.enums.Attribute;
 import pl.iz.cubicrl.model.enums.DamageType;
@@ -19,7 +20,7 @@ import pl.iz.cubicrl.model.enums.Skill;
  *
  * @author Ivo
  */
-public class StatHolder {
+public class StatHolder implements Serializable {
 
 	private final EnumMap<Attribute> attributes;
 	private final EnumMap<Skill> skills;

@@ -52,7 +52,7 @@ public class HumanoidCreature extends Creature {
 		super(name, attri, sklls, lifeStatsLimits, rsistancs, secondaries, null);
 		itemHolder = new ItemHolder();
 	}
-	
+
 	@Override
 	public int getEffectiveStat(Enum e) {
 		return super.getEffectiveStat(e) + itemHolder.getStatModification(e);

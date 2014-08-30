@@ -6,6 +6,7 @@
 
 package pl.iz.cubicrl.model.api;
 
+import java.io.Serializable;
 import pl.iz.cubicrl.model.creature.Creature;
 import pl.iz.cubicrl.model.field.Field;
 import pl.iz.cubicrl.model.items.Item;
@@ -18,7 +19,7 @@ import pl.iz.cubicrl.model.trap.Trap;
  * Simple adapter class for visitor interface
  * @author Ivo
  */
-public class VisitorAdapter implements Visitor{
+public class VisitorAdapter implements Visitor,Serializable {
 
 	@Override
 	public void visit(Field field) {
