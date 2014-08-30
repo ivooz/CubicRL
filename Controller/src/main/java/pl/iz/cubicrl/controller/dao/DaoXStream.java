@@ -9,6 +9,7 @@ import com.google.common.io.Files;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.thoughtworks.xstream.XStream;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -19,6 +20,7 @@ import java.nio.charset.Charset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pl.iz.cubicrl.model.api.IDao;
+import pl.iz.cubicrl.model.core.GameEventBus;
 import pl.iz.cubicrl.model.core.GameWorld;
 import pl.iz.cubicrl.model.creature.Creature;
 import pl.iz.cubicrl.model.field.Field;
@@ -33,20 +35,24 @@ import pl.iz.cubicrl.model.occurence.Occurence;
 public class DaoXStream implements IDao {
 
 	XStream xStream;
+	GameEventBus eventBus;
 
 	@Inject
-	public DaoXStream(XStream xStream) {
+	public DaoXStream(XStream xStream, GameEventBus eventBus) {
 		this.xStream = xStream;
+		this.eventBus = eventBus;
 	}
 
 	@Override
-	public void save(Creature creature) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public void save(Creature creature) throws IOException {
+		writeStringToFile("../Assets/Creatures/" + creature.getName() + ".xml",
+			xStream.toXML(creature));
 	}
 
 	@Override
-	public void save(Field field) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public void save(Field field) throws IOException {
+		writeStringToFile("../Assets/Fields/" + field.getName() + ".xml",
+			xStream.toXML(field));
 	}
 
 	@Override
@@ -62,17 +68,19 @@ public class DaoXStream implements IDao {
 	@Override
 	public void save(GameWorld world, String path) throws IOException {
 		writeStringToFile(path, xStream.toXML(world));
-
 	}
 
 	@Override
-	public Creature loadCreature(String name) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public Creature loadCreature(String name) throws IOException {
+		return (Creature) xStream.fromXML(readStringFromFile("../Assets/Creatures/" + name + ".xml"));
 	}
 
 	@Override
-	public Field loadField(String name) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public Field loadField(String name) throws IOException {
+		Field field = (Field) xStream.fromXML(readStringFromFile("../Assets/Fields/" + name + ".xml"));
+		//Event Bus is transient in Field 
+		field.setEventBus(eventBus);
+		return field;
 	}
 
 	@Override
@@ -91,11 +99,9 @@ public class DaoXStream implements IDao {
 	}
 
 	private void writeStringToFile(String path, String content) throws FileNotFoundException, IOException {
-		OutputStreamWriter char_output = new OutputStreamWriter(
-			new FileOutputStream(path),
-			Charset.forName("UTF-8").newEncoder()
-		);
-		char_output.write(content);
+		BufferedWriter writer = Files.newWriter(new File(path), Charset.forName("UTF-8"));
+		writer.append(content);
+		writer.close();
 	}
 
 	private String readStringFromFile(String path) throws IOException {

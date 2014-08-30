@@ -6,6 +6,7 @@
 
 package pl.iz.cubicrl.controller.factory;
 
+import com.google.inject.Singleton;
 import javax.inject.Inject;
 import pl.iz.cubicrl.model.core.GameEventBus;
 
@@ -13,6 +14,7 @@ import pl.iz.cubicrl.model.core.GameEventBus;
  *
  * @author Ivo
  */
+@Singleton
 public class CreatureFactory {
 	private final GameEventBus eventBus;
 
@@ -20,4 +22,6 @@ public class CreatureFactory {
 	public CreatureFactory(GameEventBus eventBus) {
 		this.eventBus = eventBus;
 	}
+	
+	
 }
