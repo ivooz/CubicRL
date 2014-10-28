@@ -7,13 +7,8 @@
 package pl.iz.cubicrl.controller.core;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Inject;
-import com.google.inject.Provides;
-import java.util.Arrays;
 import pl.iz.cubicrl.controller.dao.DaoXStream;
 import pl.iz.cubicrl.model.api.IDao;
-import pl.iz.cubicrl.model.creature.Player;
-import pl.iz.cubicrl.model.util.PropertyLoader;
 
 /**
  *

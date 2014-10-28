@@ -5,7 +5,6 @@ package pl.iz.cubicrl.model.tests;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import pl.iz.cubicrl.model.tests.TestFactory;
 import java.util.Random;
 import org.junit.After;
@@ -19,7 +18,7 @@ import pl.iz.cubicrl.model.creature.HumanoidCreature;
  * @author Ivo
  */
 public class HumanoidCreatureBaseTest {
-	
+
 	public HumanoidCreature testCreature;
 	public Random random;
 

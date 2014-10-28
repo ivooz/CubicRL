@@ -5,7 +5,6 @@ package pl.iz.cubicrl.model.tests.effect;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.util.Random;
 import java.util.stream.IntStream;
 import javafx.util.Pair;
@@ -26,8 +25,8 @@ public class TimedEffect_Test extends CreatureBaseTest {
 		Random random = new Random();
 		int initialCharima = testCreature.getEffectiveStat(Attribute.CHARISMA);
 		int modification = random.nextInt(20);
-		TimedEffect testTimedEffect1 = new TimedEffect("test0",5);
-		TimedEffect testTimedEffect2 = new TimedEffect("test2",10);
+		TimedEffect testTimedEffect1 = new TimedEffect("test0", 5);
+		TimedEffect testTimedEffect2 = new TimedEffect("test2", 10);
 		Effect testEffect = new Effect("test1");
 		testCreature.addEffect(testEffect);
 		testTimedEffect1.addModifier(new Pair<>(Attribute.CHARISMA, modification))

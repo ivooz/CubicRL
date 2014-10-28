@@ -6,7 +6,7 @@
 package pl.iz.cubicrl.model.field;
 
 import java.io.Serializable;
-import pl.iz.cubicrl.model.occurence.Occurence;
+import pl.iz.cubicrl.model.occurrence.Occurrence;
 import java.util.Stack;
 import pl.iz.cubicrl.model.api.TurnObserver;
 import pl.iz.cubicrl.model.api.Visitor;
@@ -20,10 +20,10 @@ import pl.iz.cubicrl.model.core.GameEventBus;
  */
 public class Field implements TurnObserver, Serializable {
 
-	protected final Coords2D roomCoordinates;
 	private final Coords2D spriteSheetCoordinates;
-	protected final Stack<Occurence> occurences;
-	transient protected GameEventBus eventBus;
+	protected final Stack<Occurrence> Occurrences;
+	protected GameEventBus eventBus;
+	protected Coords2D roomCoordinates;
 	private final String name;
 	private boolean visible;
 	private boolean visited;
@@ -41,13 +41,29 @@ public class Field implements TurnObserver, Serializable {
 		this.eventBus = eventBus;
 		this.roomCoordinates = roomCoordinates;
 		this.spriteSheetCoordinates = spriteSheetCoordinates;
-		occurences = new Stack<>();
+		Occurrences = new Stack<>();
 		visited = false;
 		visible = false;
 	}
 
 	/**
-	 * Used for allowing interaction with Creatures, Occurences, (Items?).
+	 *
+	 * @param name identifies a type
+	 * @param spriteSheetCoordinates location of graphics on spritesheet
+	 * @param eventBus used for publishing in game events
+	 */
+	public Field(String name, Coords2D spriteSheetCoordinates,
+		GameEventBus eventBus) {
+		this.name = name;
+		this.eventBus = eventBus;
+		this.spriteSheetCoordinates = spriteSheetCoordinates;
+		Occurrences = new Stack<>();
+		visited = false;
+		visible = false;
+	}
+
+	/**
+	 * Used for allowing interaction with Creatures, Occurrences, (Items?).
 	 * These classes manipulate Field's state via this method.
 	 *
 	 * @param visitor
@@ -102,57 +118,62 @@ public class Field implements TurnObserver, Serializable {
 	}
 
 	/**
-	 * Returns Occurences currently occuring on the field
+	 * Returns Occurrences currently occuring on the field
 	 *
-	 * @return Occurences occuring
+	 * @return Occurrences occuring
 	 */
-	public Stack<Occurence> getOccurences() {
-		return occurences;
+	public Stack<Occurrence> getOccurrences() {
+		return Occurrences;
 	}
 
 	/**
-	 * Adds new occurence. Does not allow two occurences with the same name
+	 * Adds new Occurrence. Does not allow two Occurrences with the same
+	 * name
 	 *
-	 * @param occurence
+	 * @param Occurrence
 	 */
-	public void addOccurence(Occurence occurence) {
-		if (!occurences.parallelStream().anyMatch(o -> o.getName().equals(occurence.getName()))) {
-			occurences.push(occurence);
+	public void addOccurrence(Occurrence Occurrence) {
+		if (!Occurrences.parallelStream().anyMatch(o -> o.getName().equals(Occurrence.getName()))) {
+			Occurrences.push(Occurrence);
 		}
 	}
 
 	/**
-	 * Returns uppermost Occurence(the latest), to be used for drawing
+	 * Returns uppermost Occurrence(the latest), to be used for drawing
 	 *
-	 * @return uppermost Occurence
+	 * @return uppermost Occurrence
 	 */
-	public Occurence getTopOccurence() {
-		return occurences.peek();
+	public Occurrence getTopOccurrence() {
+		return Occurrences.peek();
 	}
 
-	public void removeOccurence(Occurence occurence) {
-		occurences.remove(occurence);
+	public void removeOccurrence(Occurrence Occurrence) {
+		Occurrences.remove(Occurrence);
 	}
 
-	public boolean hasOccurence() {
-		return !occurences.isEmpty();
+	public boolean hasOccurrence() {
+		return !Occurrences.isEmpty();
 	}
 
 	@Override
 	public void nextTurnNotify() {
-		occurences.forEach(o -> o.visit(this));
-		occurences.removeIf(o -> o.isExpired());
+		Occurrences.forEach(o -> o.visit(this));
+		Occurrences.removeIf(o -> o.isExpired());
 	}
 
 	/**
 	 * For use only during deserialization
-	 * @param eventBus 
+	 *
+	 * @param eventBus
 	 */
 	public void setEventBus(GameEventBus eventBus) {
 		if (this.eventBus == null) {
 			this.eventBus = eventBus;
 		}
 	}
-	
-	
+
+	public void setRoomCoordinates(Coords2D roomCoordinates) {
+		this.roomCoordinates = roomCoordinates;
+	}
+
 }

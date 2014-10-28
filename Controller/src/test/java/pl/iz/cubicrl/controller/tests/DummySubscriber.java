@@ -8,6 +8,7 @@ package pl.iz.cubicrl.controller.tests;
 
 import com.google.common.eventbus.Subscribe;
 import java.io.Serializable;
+import pl.iz.cubicrl.model.api.events.GameEvent;
 
 /**
  *
@@ -18,7 +19,7 @@ public class DummySubscriber implements Serializable {
 	public boolean wasNotified=false;
 	
 	@Subscribe
-	public void notify(String string) {
+	public void notify(GameEvent e) {
 		wasNotified=true;
 	}
 }

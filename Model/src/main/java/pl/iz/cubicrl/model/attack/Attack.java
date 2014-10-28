@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pl.iz.cubicrl.model.attack;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import pl.iz.cubicrl.model.effects.Effect;
 import pl.iz.cubicrl.model.enums.DamageType;
@@ -14,7 +14,8 @@ import pl.iz.cubicrl.model.enums.DamageType;
  *
  * @author Ivo
  */
-public class Attack {
+public class Attack implements Serializable {
+
 	private final int accuracy;
 	private final int damage;
 	private final DamageType damageType;
@@ -38,10 +39,12 @@ public class Attack {
 	public DamageType getDamageType() {
 		return damageType;
 	}
+
 	/**
 	 * To be used in a builder pattern
+	 *
 	 * @param effect
-	 * @return 
+	 * @return
 	 */
 	public Attack addEffect(Effect effect) {
 		effects.add(effect);
@@ -51,7 +54,4 @@ public class Attack {
 	public ArrayList<Effect> getEffects() {
 		return effects;
 	}
-	
-	
-	
 }

@@ -22,11 +22,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import pl.iz.cubicrl.controller.dao.DaoXStream;
-import pl.iz.cubicrl.controller.factory.CreatureFactory;
+import pl.iz.cubicrl.controller.factory.EntityFactory;
 import pl.iz.cubicrl.controller.tests.DummySubscriber;
+import pl.iz.cubicrl.model.api.events.GameEvent;
 import pl.iz.cubicrl.model.core.GameWorld;
 import pl.iz.cubicrl.model.creature.Player;
-import pl.iz.cubicrl.model.util.PropertyLoader;
+import pl.iz.cubicrl.model.core.PropertyLoader;
 
 /**
  *
@@ -65,7 +66,7 @@ public class GameWorldSerialization_Test {
 			gameWorld.getEventBus().subscribe(dummy);
 			dao.save(gameWorld, path);
 			GameWorld deserializedWorld = dao.loadWorld(path);
-			deserializedWorld.getEventBus().publish("Yo");
+			deserializedWorld.getEventBus().publish(new GameEvent(null));
 			assertTrue(((DummySubscriber)deserializedWorld.getEventBus().getSubscribers().get(0)).wasNotified);
 		} catch (IOException ex) {
 			System.out.println("fail! "+ex.getMessage());

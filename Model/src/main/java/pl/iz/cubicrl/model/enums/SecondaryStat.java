@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pl.iz.cubicrl.model.enums;
 
 /**
@@ -11,5 +10,6 @@ package pl.iz.cubicrl.model.enums;
  * @author Ivo
  */
 public enum SecondaryStat {
+
 	AC
 }

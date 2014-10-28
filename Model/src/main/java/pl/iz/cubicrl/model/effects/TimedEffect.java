@@ -21,14 +21,13 @@ public class TimedEffect extends Effect {
 		return timer;
 	}
 
-	public TimedEffect(String name,int timer) {
+	public TimedEffect(String name, int timer) {
 		super(name);
 		this.timer = timer;
 	}
 
 	/**
-	 * TimedEffect is removed from the Effects list when the timer is
-	 * up.
+	 * TimedEffect is removed from the Effects list when the timer is up.
 	 *
 	 * @param creature which the effect concerns
 	 */
@@ -36,7 +35,7 @@ public class TimedEffect extends Effect {
 	public void visit(Creature creature) {
 		super.visit(creature);
 		timer--;
-		if(timer==0) {
+		if (timer == 0) {
 			expired = true;
 		}
 	}

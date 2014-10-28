@@ -5,7 +5,6 @@ package pl.iz.cubicrl.model.tests;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertFalse;
@@ -14,7 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import pl.iz.cubicrl.model.field.Field;
 import pl.iz.cubicrl.model.core.Coords2D;
-import pl.iz.cubicrl.model.occurence.Occurence;
+import pl.iz.cubicrl.model.occurrence.Occurrence;
 
 /**
  *
@@ -37,7 +36,7 @@ public class Field_Test {
 
 	@Before
 	public void setUp() {
-		testField = new Field("test", new Coords2D(6, 6), new Coords2D(7, 7),TestFactory.getInstance().eventBus);
+		testField = new Field("test", new Coords2D(6, 6), new Coords2D(7, 7), TestFactory.getInstance().eventBus);
 	}
 
 	@After
@@ -48,7 +47,7 @@ public class Field_Test {
 	public void testInitialization_creatingInstanceAndCheckingIfFieldsAreInitializedAsExpected() {
 		assert (testField.getRoomCoords().x == 6 && testField.getRoomCoords().y == 6);
 		assert (testField.getSpriteSheetCoords().x == 7 && testField.getSpriteSheetCoords().y == 7);
-		assert (testField.getOccurences().size() == 0);
+		assert (testField.getOccurrences().size() == 0);
 		assert (testField.getName().equals("test"));
 		assertFalse(testField.isVisible());
 		assertFalse(testField.isVisited());
@@ -61,13 +60,13 @@ public class Field_Test {
 	}
 
 	@Test
-	public void testFieldOccurence_() {
-		int initialOccurenceCount = testField.getOccurences().size();
-		Occurence occurence = new Occurence(null, null);
-		testField.addOccurence(occurence);
-		assert (testField.getOccurences().size() == initialOccurenceCount + 1);
-		assert (testField.getTopOccurence().equals(occurence));
-		testField.removeOccurence(occurence);
-		assert (testField.getOccurences().size() == initialOccurenceCount);
+	public void testFieldOccurrence_() {
+		int initialOccurrenceCount = testField.getOccurrences().size();
+		Occurrence Occurrence = new Occurrence(null, null);
+		testField.addOccurrence(Occurrence);
+		assert (testField.getOccurrences().size() == initialOccurrenceCount + 1);
+		assert (testField.getTopOccurrence().equals(Occurrence));
+		testField.removeOccurrence(Occurrence);
+		assert (testField.getOccurrences().size() == initialOccurrenceCount);
 	}
 }

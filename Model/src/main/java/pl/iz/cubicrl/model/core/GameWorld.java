@@ -6,6 +6,7 @@
 package pl.iz.cubicrl.model.core;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -13,13 +14,13 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import pl.iz.cubicrl.model.api.TurnObserver;
 import pl.iz.cubicrl.model.creature.Player;
-import pl.iz.cubicrl.model.util.PropertyLoader;
 
 /**
  * Abstraction for the entire gameWorld, including its state
  *
  * @author Ivo
  */
+@Singleton
 public class GameWorld implements TurnObserver {
 
 	private Calendar gameTime;
@@ -28,6 +29,8 @@ public class GameWorld implements TurnObserver {
 	private int turnCount;
 	private int secondsPerTurn;
 	private Cube cube;
+	private PropertyLoader propertyLoader;
+	private TrapMap trapMap;
 
 	/**
 	 * Loads configuration from the properties.config and initializes game
@@ -36,32 +39,36 @@ public class GameWorld implements TurnObserver {
 	 *
 	 * @param player
 	 * @param eventBus
+	 * @param propertyLoader
+	 * @param trapMap
 	 * @throws IOException if properties are not loaded properly from the
 	 * config file
 	 */
 	@Inject
-	public GameWorld(Player player, GameEventBus eventBus) throws IOException {
-		PropertyLoader propLoader = PropertyLoader.getInstance();
-		int year = Integer.parseInt(propLoader.loadProperty("startYear"));
-		int month = Integer.parseInt(propLoader.loadProperty("startMonth"));
-		int day = Integer.parseInt(propLoader.loadProperty("startDay"));
+	public GameWorld(Player player, GameEventBus eventBus, PropertyLoader propertyLoader,
+		TrapMap trapMap) throws IOException {
+		this.propertyLoader = propertyLoader;
+		this.eventBus = eventBus;
+		this.player = player;
+		this.trapMap=trapMap;
+		int year = Integer.parseInt(propertyLoader.loadProperty("startYear"));
+		int month = Integer.parseInt(propertyLoader.loadProperty("startMonth"));
+		int day = Integer.parseInt(propertyLoader.loadProperty("startDay"));
 		gameTime = GregorianCalendar.getInstance();
 		gameTime.set(GregorianCalendar.YEAR, year);
 		gameTime.set(GregorianCalendar.MONTH, month);
 		gameTime.set(GregorianCalendar.DATE, day);
-		secondsPerTurn = Integer.parseInt(propLoader.loadProperty("secondsPerTurn"));
+		secondsPerTurn = Integer.parseInt(propertyLoader.loadProperty("secondsPerTurn"));
 		turnCount = 0;
-		cube = new Cube(Integer.parseInt(propLoader.loadProperty("cubeEdgeSize")));
-		this.eventBus=eventBus;
-		this.player=player;
+		cube = new Cube(Integer.parseInt(propertyLoader.loadProperty("cubeEdgeSize")));
 	}
 
 	private GameWorld() {
 	}
-	
-	
+
 	/**
 	 * Do not change the time :)
+	 *
 	 * @return current world gamve and time
 	 */
 	public Calendar getGameDateTime() {
@@ -74,12 +81,16 @@ public class GameWorld implements TurnObserver {
 
 	@Override
 	public void nextTurnNotify() {
-		gameTime.add(GregorianCalendar.SECOND,secondsPerTurn);
+		gameTime.add(GregorianCalendar.SECOND, secondsPerTurn);
 		turnCount++;
 	}
 
-	public Room getRoom(Coordinates3D coords) {
+	public Room getRoomAt(Coords3D coords) {
 		return cube.getRoomAt(coords);
+	}
+	
+	public void setRoomAt(Coords3D coords, Room room) {
+		cube.setRoomAt(coords, room);
 	}
 
 	public Player getPlayer() {
@@ -92,5 +103,13 @@ public class GameWorld implements TurnObserver {
 
 	public Cube getCube() {
 		return cube;
+	}
+
+	public TrapMap getTrapMap() {
+		return trapMap;
+	}
+
+	public void setTrapMap(TrapMap trapMap) {
+		this.trapMap = trapMap;
 	}
 }

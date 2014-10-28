@@ -5,7 +5,6 @@ package pl.iz.cubicrl.model.tests.effect;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import pl.iz.cubicrl.model.effects.DamagingTimedEffect;
@@ -30,7 +29,7 @@ public class DamagingTimedEffect_Test extends CreatureBaseTest {
 		DamageType damageType = DamageType.HEAT;
 		int resistance = testCreature.getEffectiveStat(damageType);
 		int expectedDamagePerTurn = (int) (damagePerTurn * (resistance / 100d));
-		DamagingTimedEffect damagingTimedEffect = new DamagingTimedEffect(null,damageType, damagePerTurn, effectDuration);
+		DamagingTimedEffect damagingTimedEffect = new DamagingTimedEffect(null, damageType, damagePerTurn, effectDuration);
 		testCreature.accept(damagingTimedEffect);
 		int initialHP = testCreature.getEffectiveStat(LifeStat.HP);
 		for (int i = 0; i < effectDuration; i++) {

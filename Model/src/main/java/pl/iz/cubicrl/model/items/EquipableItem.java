@@ -22,7 +22,8 @@ public class EquipableItem extends ItemWithEffects {
 	 * @param name
 	 * @param spriteSheetCoords
 	 * @param itemSlot
-	 * @param onCharacterSpriteSheetCoords to be displayed on character model
+	 * @param onCharacterSpriteSheetCoords to be displayed on character
+	 * model
 	 */
 	public EquipableItem(String name, Coords2D onCharacterSpriteSheetCoords,
 		ItemSlot itemSlot, Coords2D spriteSheetCoords) {

@@ -13,8 +13,8 @@ import pl.iz.cubicrl.model.api.Visitor;
 import pl.iz.cubicrl.model.core.Coords2D;
 import pl.iz.cubicrl.model.core.GameEventBus;
 import pl.iz.cubicrl.model.creature.Creature;
-import pl.iz.cubicrl.model.occurence.FieldTrap;
-import pl.iz.cubicrl.model.occurence.Occurence;
+import pl.iz.cubicrl.model.occurrence.FieldTrap;
+import pl.iz.cubicrl.model.occurrence.Occurrence;
 
 /**
  * Specific Field, which can contain Items and Creatures
@@ -28,7 +28,8 @@ public class PenetrableField extends Field {
 	ArrayList<FieldTrap> traps;
 
 	/**
-	 * Field that can hold items, timedOccurences and Creatures
+	 * Field that can hold items, timedOccurrences and Creatures
+	 *
 	 * @param name
 	 * @param roomCoordinates
 	 * @param spriteSheetCoordinates
@@ -88,7 +89,7 @@ public class PenetrableField extends Field {
 	}
 
 	private void processNewResident() {
-		occurences.forEach(o -> o.visit(resident));
+		Occurrences.forEach(o -> o.visit(resident));
 	}
 
 	public void removeResident() {
@@ -96,28 +97,26 @@ public class PenetrableField extends Field {
 	}
 
 	@Override
-	public void addOccurence(Occurence occurence) {
-		super.addOccurence(occurence); 
-		if(hasResident()) {
-			occurence.visit(resident);
+	public void addOccurrence(Occurrence Occurrence) {
+		super.addOccurrence(Occurrence);
+		if (hasResident()) {
+			Occurrence.visit(resident);
 		}
 	}
 
-	
-
 	@Override
 	public void nextTurnNotify() {
-		occurences.removeIf(o -> o.isExpired());
-		occurences.forEach(o -> o.visit(this));
+		Occurrences.removeIf(o -> o.isExpired());
+		Occurrences.forEach(o -> o.visit(this));
 		if (hasResident()) {
 			resident.nextTurnNotify();
 		}
-		occurences.forEach(o -> o.nextTurnNotify());
+		Occurrences.forEach(o -> o.nextTurnNotify());
 	}
 
 	public void addTrap(FieldTrap trap) {
 		traps.add(trap);
-		occurences.add(trap);
+		Occurrences.add(trap);
 	}
 
 	public ArrayList<FieldTrap> getTraps() {

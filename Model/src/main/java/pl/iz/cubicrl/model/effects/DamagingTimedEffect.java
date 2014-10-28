@@ -19,13 +19,14 @@ public class DamagingTimedEffect extends TimedEffect {
 	private final int damagePerTurn;
 
 	public DamagingTimedEffect(String name, DamageType damageType, int damagePerTurn, int effectDuration) {
-		super(name,effectDuration);
+		super(name, effectDuration);
 		this.damageType = damageType;
 		this.damagePerTurn = damagePerTurn;
 	}
 
 	/**
 	 * Creature is dealt damage every time it is visited by this effect.
+	 *
 	 * @param creature
 	 */
 	@Override

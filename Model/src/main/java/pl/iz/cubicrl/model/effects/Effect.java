@@ -19,7 +19,7 @@ import pl.iz.cubicrl.model.api.VisitorAdapter;
  *
  * @author Ivo
  */
-public class Effect extends VisitorAdapter implements Cloneable,Serializable {
+public class Effect extends VisitorAdapter implements Cloneable, Serializable {
 
 	private final ArrayList<Pair<Enum, Integer>> modifierList;
 	private final String name;
@@ -70,7 +70,7 @@ public class Effect extends VisitorAdapter implements Cloneable,Serializable {
 		this.expired = expired;
 	}
 
-	public Effect copy(){
+	public Effect copy() {
 		try {
 			return (Effect) super.clone();
 		} catch (CloneNotSupportedException ex) {

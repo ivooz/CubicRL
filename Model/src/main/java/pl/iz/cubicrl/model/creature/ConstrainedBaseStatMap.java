@@ -9,6 +9,7 @@ import pl.iz.cubicrl.model.creature.EnumMap;
 
 /**
  * UNUSED CLASS, DELETE IN NEXT RELEASE
+ *
  * @author Ivo
  * @param <E>
  */

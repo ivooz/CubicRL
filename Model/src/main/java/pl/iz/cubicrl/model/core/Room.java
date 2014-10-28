@@ -13,6 +13,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import javax.validation.constraints.NotNull;
 import pl.iz.cubicrl.model.api.TurnObserver;
+import pl.iz.cubicrl.model.api.Visitor;
 import pl.iz.cubicrl.model.trap.RoomTrap;
 import pl.iz.cubicrl.model.creature.Creature;
 import pl.iz.cubicrl.model.enums.Direction;
@@ -23,13 +24,15 @@ import pl.iz.cubicrl.model.field.Portal;
  *
  * @author Ivo
  */
-public class Room implements TurnObserver,Serializable {
+public class Room implements TurnObserver, Serializable {
 
 	private final String name;
 	private final Field[][] fields;
 	private final HashMap<Direction, Portal> entrances;
 	private final ArrayList<Creature> visitingCreatures;
 	private final ArrayList<RoomTrap> roomTraps;
+	private Coords3D cubeCoords;
+	
 
 	public Room(int edgeSize, String name) {
 		fields = new Field[edgeSize][edgeSize];
@@ -91,21 +94,6 @@ public class Room implements TurnObserver,Serializable {
 		return entrances;
 	}
 
-	/**
-	 * Puts creature in the room in the direction that is opposite to the
-	 * one given in parameter. Creature going south will be placed at the
-	 * northern entrance.
-	 *
-	 * @param creature
-	 * @param direction
-	 */
-	public void welcomeCreature(Creature creature, Direction direction) {
-		//Set current room to this room, will be useful in gui
-		creature.visit(this);
-		getEntrance(direction).accept(creature);
-		visitingCreatures.add(creature);
-	}
-
 	public void addRoomTrap(RoomTrap RoomTrap) {
 		roomTraps.add(RoomTrap);
 	}
@@ -116,7 +104,7 @@ public class Room implements TurnObserver,Serializable {
 	 * @return
 	 */
 	public Stream<Field> getFieldsAsParallelStream() {
-		return Arrays.stream(fields).flatMap(fArr -> Arrays.stream(fArr)).parallel();
+		return getFieldsAsStream().parallel();
 	}
 
 	/**
@@ -132,4 +120,29 @@ public class Room implements TurnObserver,Serializable {
 	public ArrayList<Creature> getVisitingCreatures() {
 		return visitingCreatures;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void resolveEntrances() {
+		getFieldsAsStream().filter(f -> f instanceof Portal)
+			.forEach(f -> {
+				Portal p = (Portal) f;
+				entrances.put(p.getDirection(), p);
+			});
+	}
+	
+	public void accept(Visitor vis) {
+		vis.visit(this);
+	}
+
+	public Coords3D getCubeCoords() {
+		return cubeCoords;
+	}
+
+	public void setCubeCoords(Coords3D cubeCoords) {
+		this.cubeCoords = cubeCoords;
+	}
+
 }

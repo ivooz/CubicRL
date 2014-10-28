@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pl.iz.cubicrl.model.items;
 
 import pl.iz.cubicrl.model.api.VisitorAdapter;
@@ -14,7 +13,7 @@ import pl.iz.cubicrl.model.core.Coords2D;
  * @author Ivo
  */
 public abstract class Item extends VisitorAdapter {
-	
+
 	private final String name;
 	private final Coords2D onGroundSpirteSheetCoords;
 

@@ -7,6 +7,7 @@ package pl.iz.cubicrl.model.enums;
 
 /**
  * All skills available in the game
+ *
  * @author Ivo
  */
 public enum Skill {

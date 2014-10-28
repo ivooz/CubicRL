@@ -46,8 +46,7 @@ public class StatHolder implements Serializable {
 	 * [MAXHP,MAXSAN,MAXHUNGER,MAXTHRST]
 	 * @param rsistancs initial values of resistances
 	 * [BLNT,PRCNG,SLSHNG,HT,CLD,CHMCL,PSCHC]
-	 * @param secondaries
-	 * [AC]
+	 * @param secondaries [AC]
 	 */
 	public StatHolder(int[] attri, int[] sklls, int[] lifeStatsLimits,
 		int[] rsistancs, int[] secondaries) {
@@ -55,7 +54,7 @@ public class StatHolder implements Serializable {
 		skills = new EnumMap<>(Skill.class, sklls);
 		this.lifeStatsLimits = new EnumMap<>(LifeStatsUpperLimit.class, lifeStatsLimits);
 		resistances = new EnumMap<>(DamageType.class, rsistancs);
-		secondaryStats= new EnumMap<>(SecondaryStat.class, secondaries);
+		secondaryStats = new EnumMap<>(SecondaryStat.class, secondaries);
 		lifeStats = new EnumMap<>(LifeStat.class, lifeStatsLimits);
 		classMap = new HashMap<>();
 		classMap.put(Attribute.class, attributes);
@@ -63,12 +62,13 @@ public class StatHolder implements Serializable {
 		classMap.put(Skill.class, skills);
 		classMap.put(LifeStatsUpperLimit.class, this.lifeStatsLimits);
 		classMap.put(LifeStat.class, lifeStats);
-		classMap.put(SecondaryStat.class,secondaryStats);
+		classMap.put(SecondaryStat.class, secondaryStats);
 	}
 
 	/**
-	 * Add or substract a value from the base stat, cannot be increased higher
-	 * than it is specified by the corrseponding limit.
+	 * Add or substract a value from the base stat, cannot be increased
+	 * higher than it is specified by the corrseponding limit.
+	 *
 	 * @param lifeStat to be changed
 	 * @param change
 	 */

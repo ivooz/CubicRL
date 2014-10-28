@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pl.iz.cubicrl.model.trap;
 
 /**
- * Can be either a room trap or a field trap. 
+ * Can be either a room trap or a field trap.
+ *
  * @author Ivo
  */
 public abstract class Trap {
-	
+
 }

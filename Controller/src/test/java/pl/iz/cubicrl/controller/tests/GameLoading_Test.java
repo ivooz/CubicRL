@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 import pl.iz.cubicrl.controller.core.GameController;
 import pl.iz.cubicrl.controller.core.LoadGameModule;
 import pl.iz.cubicrl.controller.dao.DaoXStream;
-import pl.iz.cubicrl.controller.factory.CreatureFactory;
+import pl.iz.cubicrl.controller.factory.EntityFactory;
 import pl.iz.cubicrl.model.api.IDao;
 import pl.iz.cubicrl.model.core.GameWorld;
 

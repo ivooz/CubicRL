@@ -11,6 +11,7 @@ package pl.iz.cubicrl.model.enums;
  * @author Ivo
  */
 public enum LifeStatsUpperLimit {
+
 	MAXHP,
 	MAXSANITY,
 	MAXHUNGER,

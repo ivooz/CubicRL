@@ -5,7 +5,6 @@ package pl.iz.cubicrl.model.tests;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertFalse;
@@ -41,7 +40,7 @@ public class PenetrableField_Test {
 
 	@Before
 	public void setUp() {
-		testField = new PenetrableField("test", new Coords2D(0,0),new Coords2D(0,0),TestFactory.getInstance().eventBus);
+		testField = new PenetrableField("test", new Coords2D(0, 0), new Coords2D(0, 0), TestFactory.getInstance().eventBus);
 	}
 
 	@After

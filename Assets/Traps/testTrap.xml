@@ -1,0 +1,13 @@
+<pl.iz.cubicrl.model.trap.RoomTrap>
+  <name>testTrap</name>
+  <testedStatistic class="pl.iz.cubicrl.model.enums.Attribute">STRENGTH</testedStatistic>
+  <testFrequency>1</testFrequency>
+  <testDifficulty>2147483647</testDifficulty>
+  <moduloFactor>2</moduloFactor>
+  <frequency>2</frequency>
+  <mobility>0</mobility>
+  <instability>0</instability>
+  <activated>false</activated>
+  <deviation>0</deviation>
+  <timer>0</timer>
+</pl.iz.cubicrl.model.trap.RoomTrap>

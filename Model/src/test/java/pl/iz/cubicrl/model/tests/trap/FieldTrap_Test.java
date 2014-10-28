@@ -16,7 +16,7 @@ import pl.iz.cubicrl.model.creature.HumanoidCreature;
 import pl.iz.cubicrl.model.enums.DamageType;
 import pl.iz.cubicrl.model.enums.LifeStat;
 import pl.iz.cubicrl.model.field.PenetrableField;
-import pl.iz.cubicrl.model.occurence.FieldTrap;
+import pl.iz.cubicrl.model.occurrence.FieldTrap;
 import pl.iz.cubicrl.model.tests.TestFactory;
 
 /**

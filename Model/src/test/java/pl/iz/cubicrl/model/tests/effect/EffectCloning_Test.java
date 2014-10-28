@@ -5,7 +5,6 @@ package pl.iz.cubicrl.model.tests.effect;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
@@ -39,7 +38,7 @@ public class EffectCloning_Test {
 
 	@Before
 	public void setUp() {
-		testEffect = new DamagingTimedEffect(null,DamageType.BLUNT, 1, 2);
+		testEffect = new DamagingTimedEffect(null, DamageType.BLUNT, 1, 2);
 	}
 
 	@After
@@ -50,6 +49,6 @@ public class EffectCloning_Test {
 	public void testCloning() {
 		DamagingTimedEffect clone = null;
 		clone = (DamagingTimedEffect) testEffect.copy();
-		Assert.assertEquals(clone.getTimer(),testEffect.getTimer());
+		Assert.assertEquals(clone.getTimer(), testEffect.getTimer());
 	}
 }

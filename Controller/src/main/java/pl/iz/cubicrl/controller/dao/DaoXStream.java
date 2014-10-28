@@ -12,20 +12,18 @@ import com.thoughtworks.xstream.XStream;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import pl.iz.cubicrl.model.api.IDao;
 import pl.iz.cubicrl.model.core.GameEventBus;
 import pl.iz.cubicrl.model.core.GameWorld;
+import pl.iz.cubicrl.model.core.Room;
 import pl.iz.cubicrl.model.creature.Creature;
+import pl.iz.cubicrl.model.effects.Effect;
 import pl.iz.cubicrl.model.field.Field;
 import pl.iz.cubicrl.model.items.Item;
-import pl.iz.cubicrl.model.occurence.Occurence;
+import pl.iz.cubicrl.model.occurrence.Occurrence;
+import pl.iz.cubicrl.model.trap.RoomTrap;
 
 /**
  *
@@ -56,18 +54,43 @@ public class DaoXStream implements IDao {
 	}
 
 	@Override
-	public void save(Occurence occurence) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public void save(Occurrence occurrence) throws IOException {
+		writeStringToFile("../Assets/Occurrences/" + occurrence.getName() + ".xml",
+			xStream.toXML(occurrence));
 	}
 
 	@Override
-	public void save(Item item) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public void save(Item item) throws IOException {
+		writeStringToFile("../Assets/Items/" + item.getName() + ".xml",
+			xStream.toXML(item));
 	}
 
 	@Override
 	public void save(GameWorld world, String path) throws IOException {
 		writeStringToFile(path, xStream.toXML(world));
+	}
+
+	@Override
+	public void save(Effect effect) throws IOException {
+		writeStringToFile("../Assets/Effects/" + effect.getName() + ".xml",
+			xStream.toXML(effect));
+	}
+
+	@Override
+	public void save(Room room) throws IOException {
+		writeStringToFile("../Assets/Rooms/" + room.getName() + ".xml",
+			xStream.toXML(room));
+	}
+
+	@Override
+	public void save(RoomTrap roomTrap) throws IOException {
+		writeStringToFile("../Assets/Traps/" + roomTrap.getName() + ".xml",
+			xStream.toXML(roomTrap));
+	}
+
+	@Override
+	public Effect loadEffect(String name) throws IOException {
+		return (Effect) xStream.fromXML(readStringFromFile("../Assets/Effects/" + name + ".xml"));
 	}
 
 	@Override
@@ -77,20 +100,27 @@ public class DaoXStream implements IDao {
 
 	@Override
 	public Field loadField(String name) throws IOException {
-		Field field = (Field) xStream.fromXML(readStringFromFile("../Assets/Fields/" + name + ".xml"));
-		//Event Bus is transient in Field 
-		field.setEventBus(eventBus);
-		return field;
+		return (Field) xStream.fromXML(readStringFromFile("../Assets/Fields/" + name + ".xml"));
 	}
 
 	@Override
-	public Occurence loadOccurence(String name) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public RoomTrap loadRoomTrap(String name) throws IOException {
+		return (RoomTrap) xStream.fromXML(readStringFromFile("../Assets/Traps/" + name + ".xml"));
 	}
 
 	@Override
-	public Item loadItem(String name) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public Room loadRoom(String name) throws IOException {
+		return (Room) xStream.fromXML(readStringFromFile("../Assets/Rooms/" + name + ".xml"));
+	}
+	
+	@Override
+	public Occurrence loadOccurrence(String name) throws IOException {
+		return (Occurrence) xStream.fromXML(readStringFromFile("../Assets/Occurrences/" + name + ".xml"));
+	}
+
+	@Override
+	public Item loadItem(String name) throws IOException {
+		return (Item) xStream.fromXML(readStringFromFile("../Assets/Items/" + name + ".xml"));
 	}
 
 	@Override
@@ -99,13 +129,16 @@ public class DaoXStream implements IDao {
 	}
 
 	private void writeStringToFile(String path, String content) throws FileNotFoundException, IOException {
-		BufferedWriter writer = Files.newWriter(new File(path), Charset.forName("UTF-8"));
-		writer.append(content);
-		writer.close();
+		try (BufferedWriter writer = Files.newWriter(new File(path), Charset.forName("UTF-8"))) {
+			writer.append(content);
+		}
 	}
 
 	private String readStringFromFile(String path) throws IOException {
 		return Files.toString(new File(path), Charset.forName("UTF-8"));
 	}
 
+	public GameEventBus getEventBus() {
+		return eventBus;
+	}
 }

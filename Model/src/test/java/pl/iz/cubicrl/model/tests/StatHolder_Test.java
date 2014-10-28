@@ -5,7 +5,6 @@ package pl.iz.cubicrl.model.tests;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import org.junit.Test;
 import pl.iz.cubicrl.model.enums.Attribute;
 import pl.iz.cubicrl.model.enums.DamageType;

@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pl.iz.cubicrl.model.enums;
 
 /**
  * Specifies bodyparts bound to equippable items
+ *
  * @author Ivo
  */
 public enum ItemSlot {
@@ -18,5 +18,5 @@ public enum ItemSlot {
 	EYES,
 	BODY,
 	FEET
-	
+
 }

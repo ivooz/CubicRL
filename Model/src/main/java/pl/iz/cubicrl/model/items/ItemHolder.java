@@ -36,8 +36,9 @@ public class ItemHolder implements Serializable {
 	}
 
 	/**
-	 * Puts item into the slot it fits and removed from inventory. 
-	 * If there is already an item in that slot, it will be moved to inventory.
+	 * Puts item into the slot it fits and removed from inventory. If there
+	 * is already an item in that slot, it will be moved to inventory.
+	 *
 	 * @param equipableItem
 	 */
 	public void equip(EquipableItem equipableItem) {
@@ -70,7 +71,7 @@ public class ItemHolder implements Serializable {
 	}
 
 	public HashMap<ItemSlot, EquipableItem> getEquippedItems() {
-		return equippedItems; 
+		return equippedItems;
 	}
 
 	public void unequip(EquipableItem testItem) {

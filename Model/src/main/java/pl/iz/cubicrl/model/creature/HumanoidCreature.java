@@ -16,7 +16,8 @@ import pl.iz.cubicrl.model.enums.ItemSlot;
 import pl.iz.cubicrl.model.items.EquipableItem;
 import pl.iz.cubicrl.model.items.Item;
 import pl.iz.cubicrl.model.items.Weapon;
-import pl.iz.cubicrl.model.util.PropertyLoader;
+import pl.iz.cubicrl.model.core.PropertyLoader;
+import pl.iz.cubicrl.model.enums.LifeStat;
 
 /**
  *
@@ -44,11 +45,11 @@ public class HumanoidCreature extends Creature {
 	 * @param secondaries value of secondary stats [AC]
 	 */
 	public HumanoidCreature(@NotNull String name,
-				@NotNull int[] attri,
-				@NotNull int[] sklls,
-				@NotNull int[] lifeStatsLimits,
-				@NotNull int[] rsistancs,
-				@NotNull int[] secondaries) {
+		@NotNull int[] attri,
+		@NotNull int[] sklls,
+		@NotNull int[] lifeStatsLimits,
+		@NotNull int[] rsistancs,
+		@NotNull int[] secondaries) {
 		super(name, attri, sklls, lifeStatsLimits, rsistancs, secondaries, null);
 		itemHolder = new ItemHolder();
 	}
@@ -101,7 +102,7 @@ public class HumanoidCreature extends Creature {
 
 	private int computeAccuracy() {
 		return getEffectiveStat(Attribute.DEXTERITY)
-			* Integer.parseInt(PropertyLoader.getInstance().loadProperty("accuracyPerDex"));
+			* Integer.parseInt(propertyLoader.loadProperty("accuracyPerDex"));
 	}
 
 }

@@ -19,8 +19,9 @@ public class ConsumableItem extends ItemWithEffects {
 	}
 
 	/**
-	 * Adds all the item effects via visitor pattern. Effects can be timed 
+	 * Adds all the item effects via visitor pattern. Effects can be timed
 	 * or permanent.
+	 *
 	 * @param creature
 	 */
 	@Override

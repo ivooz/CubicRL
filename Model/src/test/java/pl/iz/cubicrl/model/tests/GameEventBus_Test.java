@@ -13,6 +13,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import pl.iz.cubicrl.model.api.events.GameEvent;
 import pl.iz.cubicrl.model.core.GameEventBus;
 
 /**
@@ -44,52 +45,58 @@ public class GameEventBus_Test {
 	}
 
 	interface DummySubscriber {
+
 		public boolean wasNotified();
 	}
-	
+
 	@Test
 	public void testRegisteringAndPublishing() {
 		DummySubscriber subscriber = new DummySubscriber() {
 			boolean wasNotified = false;
+
 			@Override
 			public boolean wasNotified() {
 				return wasNotified;
 			}
-			
+
 			@Subscribe
-			public void test(Object o) {
+			public void test(GameEvent e) {
 				wasNotified = true;
 			}
 		};
 		eventBus.subscribe(subscriber);
-		eventBus.publish(new Object());
+		eventBus.publish(new GameEvent(null));
 		assertTrue(subscriber.wasNotified());
 	}
-	
-	class CustomEvent {
-		
+
+	class CustomEvent extends GameEvent {
+
+		public CustomEvent(String message) {
+			super(message);
+		}
+
 	}
-	
+
 	@Test
 	public void testSubscriberToParticularEvent() {
 		DummySubscriber subscriber = new DummySubscriber() {
 			boolean wasNotified = false;
+
 			@Override
 			public boolean wasNotified() {
 				return wasNotified;
 			}
-			
+
 			@Subscribe
 			public void test(CustomEvent event) {
 				wasNotified = true;
 			}
 		};
 		eventBus.subscribe(subscriber);
-		eventBus.publish(new String());
+		eventBus.publish(new GameEvent(null));
 		assertFalse(subscriber.wasNotified());
-		eventBus.publish(new CustomEvent());
+		eventBus.publish(new CustomEvent(null));
 		assertTrue(subscriber.wasNotified());
 	}
-
 
 }

@@ -5,7 +5,6 @@ package pl.iz.cubicrl.model.tests;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.util.Random;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -40,7 +39,7 @@ public class CreatureBaseTest {
 			new int[]{100, 100, 100, 100}, // LifeStatLimits
 			new int[]{10, 10, 10, 10, 10, 10, 10}, //Resistances
 			new int[]{0}, //Secondary Stats
-			null); 
+			null);
 		random = new Random();
 	}
 

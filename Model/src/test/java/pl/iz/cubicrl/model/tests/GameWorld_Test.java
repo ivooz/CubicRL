@@ -5,7 +5,6 @@ package pl.iz.cubicrl.model.tests;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -19,10 +18,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import pl.iz.cubicrl.model.api.TurnObserver;
-import pl.iz.cubicrl.model.core.Coordinates3D;
+import pl.iz.cubicrl.model.core.Coords3D;
 import pl.iz.cubicrl.model.core.GameEventBus;
 import pl.iz.cubicrl.model.core.GameWorld;
-import pl.iz.cubicrl.model.util.PropertyLoader;
+import pl.iz.cubicrl.model.core.PropertyLoader;
+import pl.iz.cubicrl.model.core.TrapMap;
 
 /**
  *
@@ -46,20 +46,19 @@ public class GameWorld_Test {
 
 	@Before
 	public void setUp() {
+		propLoader = new PropertyLoader();
 		try {
-			gameWorld = new GameWorld(TestFactory.getInstance().getGenericPlayer(),new GameEventBus());
+			gameWorld = new GameWorld(TestFactory.getInstance().getGenericPlayer(), new GameEventBus(), propLoader, new TrapMap(propLoader));
 		} catch (IOException ex) {
 			Logger.getLogger(GameWorld_Test.class.getName()).log(Level.SEVERE, null, ex);
 			System.out.println(ex.getMessage());
 			fail();
 		}
-		propLoader = PropertyLoader.getInstance();
 	}
 
 	@After
 	public void tearDown() {
 	}
-
 
 	@Test
 	public void testNextTurnNotification_registeringObserversNotifyingAndUnregistering() {
@@ -68,14 +67,13 @@ public class GameWorld_Test {
 		assert (gameWorld.getTurnCount() == (initialTurn + 1));
 	}
 
-
 	@Test
 	public void testRoomInitialization_checkingIfRoomInstancesAreCreatedProperly() {
 		int cubeEdgeSize = Integer.parseInt(propLoader.loadProperty("cubeEdgeSize"));
 		IntStream.range(0, cubeEdgeSize).parallel().forEach(
 			x -> IntStream.range(0, cubeEdgeSize).parallel().forEach(
 				y -> IntStream.range(0, cubeEdgeSize).parallel().forEach(
-					z -> assertNull(gameWorld.getRoom(new Coordinates3D(x, y, z))))));
+					z -> assertNull(gameWorld.getRoomAt(new Coords3D(x, y, z))))));
 	}
 
 }

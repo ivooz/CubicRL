@@ -5,6 +5,7 @@
  */
 package pl.iz.cubicrl.model.creature;
 
+import com.rits.cloning.Cloner;
 import java.io.Serializable;
 import pl.iz.cubicrl.model.effects.Effect;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import pl.iz.cubicrl.model.api.TurnObserver;
 import pl.iz.cubicrl.model.api.Visitor;
 import pl.iz.cubicrl.model.api.VisitorAdapter;
 import pl.iz.cubicrl.model.attack.Attack;
+import pl.iz.cubicrl.model.core.GameEventBus;
 import pl.iz.cubicrl.model.core.Room;
 import pl.iz.cubicrl.model.enums.Attribute;
 import pl.iz.cubicrl.model.enums.DamageType;
@@ -21,19 +23,23 @@ import pl.iz.cubicrl.model.enums.LifeStat;
 import pl.iz.cubicrl.model.enums.SecondaryStat;
 import pl.iz.cubicrl.model.field.PenetrableField;
 import pl.iz.cubicrl.model.items.Item;
-import pl.iz.cubicrl.model.util.PropertyLoader;
+import pl.iz.cubicrl.model.core.PropertyLoader;
+import pl.iz.cubicrl.model.enums.Direction;
+import pl.iz.cubicrl.model.field.Portal;
 
 /**
  * Represents a being in the game.
  *
  * @author Ivo
  */
-public class Creature extends VisitorAdapter implements TurnObserver,Serializable {
+public class Creature extends VisitorAdapter implements TurnObserver, Serializable, Cloneable {
 
 	private final StatHolder statHolder;
 	private final String name;
 	private final ArrayList<Effect> effects;
 	private final Attack attack;
+	protected GameEventBus eventBus;
+	protected PropertyLoader propertyLoader;
 	private Room room;
 	private PenetrableField field;
 
@@ -54,12 +60,12 @@ public class Creature extends VisitorAdapter implements TurnObserver,Serializabl
 	 * @param attack creature's attack
 	 */
 	public Creature(@NotNull String name,
-			@NotNull int[] attri,
-			@NotNull int[] sklls,
-			@NotNull int[] lifeStatsLimits,
-			@NotNull int[] rsistancs,
-			@NotNull int[] secondaries,
-			Attack attack) {
+		@NotNull int[] attri,
+		@NotNull int[] sklls,
+		@NotNull int[] lifeStatsLimits,
+		@NotNull int[] rsistancs,
+		@NotNull int[] secondaries,
+		Attack attack) {
 		this.name = name;
 		effects = new ArrayList<>();
 		statHolder = new StatHolder(attri, sklls, lifeStatsLimits, rsistancs, secondaries);
@@ -71,7 +77,7 @@ public class Creature extends VisitorAdapter implements TurnObserver,Serializabl
 	}
 
 	/**
-	 * Allows for interaction of Items, Effects, Traps and Occurences with
+	 * Allows for interaction of Items, Effects, Traps and Occurrences with
 	 * the creature.
 	 *
 	 * @param visitor
@@ -165,7 +171,7 @@ public class Creature extends VisitorAdapter implements TurnObserver,Serializabl
 	public PenetrableField getField() {
 		return field;
 	}
-	
+
 	/**
 	 *
 	 * @param e
@@ -175,6 +181,10 @@ public class Creature extends VisitorAdapter implements TurnObserver,Serializabl
 	public void modifyBaseStat(LifeStat e, int change) {
 		statHolder.modifyStatValue(e, change);
 	}
+	
+	public void modifyBaseStat(String statName, int change) {
+		statHolder.modifyStatValue(LifeStat.valueOf(statName), change);
+	}
 
 	@Override
 	public void visit(PenetrableField field) {
@@ -182,19 +192,23 @@ public class Creature extends VisitorAdapter implements TurnObserver,Serializabl
 			//TODO: CHECK IF ENEMY
 			field.getResident().attack(computeAttack());
 		} else {
-			this.field=field;
+			//Removing resident from current field
+			if (this.field != null) {
+				this.field.removeResident();
+			}
+			this.field = field;
 			field.addResident(this);
 		}
 	}
 
-	public void attack(Attack attack)  {
+	public void attack(Attack attack) {
 		//Trying to dodge
 		Random random = new Random();
 		int dodgingCapability = getEffectiveStat(Attribute.SPEED)
-			* Integer.parseInt(PropertyLoader.getInstance().loadProperty("dodgePerSpeed"));
+			* Integer.parseInt(propertyLoader.loadProperty("dodgePerSpeed"));
 		//Armor deflection
 		int deflectingCapability = getEffectiveStat(SecondaryStat.AC)
-			* Integer.parseInt(PropertyLoader.getInstance().loadProperty("deflectionPerAc"));
+			* Integer.parseInt(propertyLoader.loadProperty("deflectionPerAc"));
 		int effectiveDodge = dodgingCapability - attack.getAccuracy();
 		if (random.nextInt(100) < effectiveDodge) {
 			// Dodged!
@@ -211,12 +225,27 @@ public class Creature extends VisitorAdapter implements TurnObserver,Serializabl
 		return attack;
 	}
 
+	public void setPropertyLoader(PropertyLoader propertyLoader) {
+		this.propertyLoader = propertyLoader;
+	}
+
 	@Override
 	public void visit(Room room) {
-		if(room!=null) {
+		if (room != null) {
 			room.getVisitingCreatures().remove(this);
 		}
 		this.room = room;
+		Direction heading;
+		if (field == null) {
+			heading = Direction.UP;
+		} else {
+			heading = ((Portal) field).getDirection();
+		}
+		room.getEntrance(heading).accept(this);
+		room.getVisitingCreatures().add(this);
 	}
 
+	public void setEventBus(GameEventBus eventBus) {
+		this.eventBus = eventBus;
+	}
 }

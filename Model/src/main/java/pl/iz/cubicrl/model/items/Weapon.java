@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pl.iz.cubicrl.model.items;
 
 import java.util.Random;
@@ -16,12 +15,12 @@ import pl.iz.cubicrl.model.enums.ItemSlot;
  * @author Ivo
  */
 public class Weapon extends EquipableItem {
-	
+
 	private final int lowerDamageBound;
 	private final int upperDamageBound;
 	private final DamageType damageType;
 
-	public Weapon(DamageType damageType, int lowerDamageBound, int upperDamageBound,String name, Coords2D onCharacterSpriteSheetCoords, Coords2D spriteSheetCoords) {
+	public Weapon(DamageType damageType, int lowerDamageBound, int upperDamageBound, String name, Coords2D onCharacterSpriteSheetCoords, Coords2D spriteSheetCoords) {
 		super(name, onCharacterSpriteSheetCoords, ItemSlot.WEAPON, spriteSheetCoords);
 		this.lowerDamageBound = lowerDamageBound;
 		this.upperDamageBound = upperDamageBound;
@@ -30,7 +29,7 @@ public class Weapon extends EquipableItem {
 
 	public int getDamage() {
 		Random random = new Random();
-		return lowerDamageBound + random.nextInt(upperDamageBound-lowerDamageBound);
+		return lowerDamageBound + random.nextInt(upperDamageBound - lowerDamageBound);
 	}
 
 	public int getLowerDamageBound() {
@@ -39,11 +38,10 @@ public class Weapon extends EquipableItem {
 
 	public int getUpperDamageBound() {
 		return upperDamageBound;
-	}	
+	}
 
 	public DamageType getDamageType() {
 		return damageType;
 	}
-	
-	
+
 }

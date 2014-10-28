@@ -38,14 +38,6 @@
             <attributes>
               <attributeMap>
                 <entry>
-                  <pl.iz.cubicrl.model.enums.Attribute reference="../../../../../itemHolder/inventory/pl.iz.cubicrl.model.items.EquipableItem/effects/pl.iz.cubicrl.model.effects.Effect/modifierList/javafx.util.Pair/key"/>
-                  <int>5</int>
-                </entry>
-                <entry>
-                  <pl.iz.cubicrl.model.enums.Attribute>CHARISMA</pl.iz.cubicrl.model.enums.Attribute>
-                  <int>5</int>
-                </entry>
-                <entry>
                   <pl.iz.cubicrl.model.enums.Attribute>INTELLIGENCE</pl.iz.cubicrl.model.enums.Attribute>
                   <int>5</int>
                 </entry>
@@ -58,6 +50,14 @@
                   <int>5</int>
                 </entry>
                 <entry>
+                  <pl.iz.cubicrl.model.enums.Attribute reference="../../../../../itemHolder/inventory/pl.iz.cubicrl.model.items.EquipableItem/effects/pl.iz.cubicrl.model.effects.Effect/modifierList/javafx.util.Pair/key"/>
+                  <int>5</int>
+                </entry>
+                <entry>
+                  <pl.iz.cubicrl.model.enums.Attribute>CHARISMA</pl.iz.cubicrl.model.enums.Attribute>
+                  <int>5</int>
+                </entry>
+                <entry>
                   <pl.iz.cubicrl.model.enums.Attribute>SPEED</pl.iz.cubicrl.model.enums.Attribute>
                   <int>5</int>
                 </entry>
@@ -66,7 +66,7 @@
             <skills>
               <attributeMap>
                 <entry>
-                  <pl.iz.cubicrl.model.enums.Skill>SPEECH</pl.iz.cubicrl.model.enums.Skill>
+                  <pl.iz.cubicrl.model.enums.Skill>MATHEMATICS</pl.iz.cubicrl.model.enums.Skill>
                   <int>1</int>
                 </entry>
                 <entry>
@@ -74,11 +74,11 @@
                   <int>1</int>
                 </entry>
                 <entry>
-                  <pl.iz.cubicrl.model.enums.Skill>MATHEMATICS</pl.iz.cubicrl.model.enums.Skill>
+                  <pl.iz.cubicrl.model.enums.Skill>SNEAKING</pl.iz.cubicrl.model.enums.Skill>
                   <int>1</int>
                 </entry>
                 <entry>
-                  <pl.iz.cubicrl.model.enums.Skill>DODGE</pl.iz.cubicrl.model.enums.Skill>
+                  <pl.iz.cubicrl.model.enums.Skill>SPEECH</pl.iz.cubicrl.model.enums.Skill>
                   <int>1</int>
                 </entry>
                 <entry>
@@ -86,17 +86,21 @@
                   <int>1</int>
                 </entry>
                 <entry>
-                  <pl.iz.cubicrl.model.enums.Skill>SNEAKING</pl.iz.cubicrl.model.enums.Skill>
+                  <pl.iz.cubicrl.model.enums.Skill>PROJECTILE</pl.iz.cubicrl.model.enums.Skill>
                   <int>1</int>
                 </entry>
                 <entry>
-                  <pl.iz.cubicrl.model.enums.Skill>PROJECTILE</pl.iz.cubicrl.model.enums.Skill>
+                  <pl.iz.cubicrl.model.enums.Skill>DODGE</pl.iz.cubicrl.model.enums.Skill>
                   <int>1</int>
                 </entry>
               </attributeMap>
             </skills>
             <lifeStats>
               <attributeMap>
+                <entry>
+                  <pl.iz.cubicrl.model.enums.LifeStat>SANITY</pl.iz.cubicrl.model.enums.LifeStat>
+                  <int>100</int>
+                </entry>
                 <entry>
                   <pl.iz.cubicrl.model.enums.LifeStat>HUNGER</pl.iz.cubicrl.model.enums.LifeStat>
                   <int>100</int>
@@ -109,20 +113,12 @@
                   <pl.iz.cubicrl.model.enums.LifeStat>THIRST</pl.iz.cubicrl.model.enums.LifeStat>
                   <int>100</int>
                 </entry>
-                <entry>
-                  <pl.iz.cubicrl.model.enums.LifeStat>SANITY</pl.iz.cubicrl.model.enums.LifeStat>
-                  <int>100</int>
-                </entry>
               </attributeMap>
             </lifeStats>
             <lifeStatsLimits>
               <attributeMap>
                 <entry>
-                  <pl.iz.cubicrl.model.enums.LifeStatsUpperLimit>MAXTHIRST</pl.iz.cubicrl.model.enums.LifeStatsUpperLimit>
-                  <int>100</int>
-                </entry>
-                <entry>
-                  <pl.iz.cubicrl.model.enums.LifeStatsUpperLimit>MAXHUNGER</pl.iz.cubicrl.model.enums.LifeStatsUpperLimit>
+                  <pl.iz.cubicrl.model.enums.LifeStatsUpperLimit>MAXSANITY</pl.iz.cubicrl.model.enums.LifeStatsUpperLimit>
                   <int>100</int>
                 </entry>
                 <entry>
@@ -130,7 +126,11 @@
                   <int>100</int>
                 </entry>
                 <entry>
-                  <pl.iz.cubicrl.model.enums.LifeStatsUpperLimit>MAXSANITY</pl.iz.cubicrl.model.enums.LifeStatsUpperLimit>
+                  <pl.iz.cubicrl.model.enums.LifeStatsUpperLimit>MAXHUNGER</pl.iz.cubicrl.model.enums.LifeStatsUpperLimit>
+                  <int>100</int>
+                </entry>
+                <entry>
+                  <pl.iz.cubicrl.model.enums.LifeStatsUpperLimit>MAXTHIRST</pl.iz.cubicrl.model.enums.LifeStatsUpperLimit>
                   <int>100</int>
                 </entry>
               </attributeMap>
@@ -138,11 +138,7 @@
             <resistances>
               <attributeMap>
                 <entry>
-                  <pl.iz.cubicrl.model.enums.DamageType>SLASHING</pl.iz.cubicrl.model.enums.DamageType>
-                  <int>10</int>
-                </entry>
-                <entry>
-                  <pl.iz.cubicrl.model.enums.DamageType>PIERCING</pl.iz.cubicrl.model.enums.DamageType>
+                  <pl.iz.cubicrl.model.enums.DamageType>CHEMICAL</pl.iz.cubicrl.model.enums.DamageType>
                   <int>10</int>
                 </entry>
                 <entry>
@@ -150,7 +146,11 @@
                   <int>10</int>
                 </entry>
                 <entry>
-                  <pl.iz.cubicrl.model.enums.DamageType>CHEMICAL</pl.iz.cubicrl.model.enums.DamageType>
+                  <pl.iz.cubicrl.model.enums.DamageType>HEAT</pl.iz.cubicrl.model.enums.DamageType>
+                  <int>10</int>
+                </entry>
+                <entry>
+                  <pl.iz.cubicrl.model.enums.DamageType>SLASHING</pl.iz.cubicrl.model.enums.DamageType>
                   <int>10</int>
                 </entry>
                 <entry>
@@ -158,11 +158,11 @@
                   <int>10</int>
                 </entry>
                 <entry>
-                  <pl.iz.cubicrl.model.enums.DamageType>HEAT</pl.iz.cubicrl.model.enums.DamageType>
+                  <pl.iz.cubicrl.model.enums.DamageType>COLD</pl.iz.cubicrl.model.enums.DamageType>
                   <int>10</int>
                 </entry>
                 <entry>
-                  <pl.iz.cubicrl.model.enums.DamageType>COLD</pl.iz.cubicrl.model.enums.DamageType>
+                  <pl.iz.cubicrl.model.enums.DamageType>PIERCING</pl.iz.cubicrl.model.enums.DamageType>
                   <int>10</int>
                 </entry>
               </attributeMap>
@@ -177,14 +177,6 @@
             </secondaryStats>
             <classMap>
               <entry>
-                <java-class>pl.iz.cubicrl.model.enums.DamageType</java-class>
-                <pl.iz.cubicrl.model.creature.EnumMap reference="../../../resistances"/>
-              </entry>
-              <entry>
-                <java-class>pl.iz.cubicrl.model.enums.LifeStatsUpperLimit</java-class>
-                <pl.iz.cubicrl.model.creature.EnumMap reference="../../../lifeStatsLimits"/>
-              </entry>
-              <entry>
                 <java-class>pl.iz.cubicrl.model.enums.LifeStat</java-class>
                 <pl.iz.cubicrl.model.creature.EnumMap reference="../../../lifeStats"/>
               </entry>
@@ -195,6 +187,14 @@
               <entry>
                 <java-class>pl.iz.cubicrl.model.enums.Attribute</java-class>
                 <pl.iz.cubicrl.model.creature.EnumMap reference="../../../attributes"/>
+              </entry>
+              <entry>
+                <java-class>pl.iz.cubicrl.model.enums.DamageType</java-class>
+                <pl.iz.cubicrl.model.creature.EnumMap reference="../../../resistances"/>
+              </entry>
+              <entry>
+                <java-class>pl.iz.cubicrl.model.enums.LifeStatsUpperLimit</java-class>
+                <pl.iz.cubicrl.model.creature.EnumMap reference="../../../lifeStatsLimits"/>
               </entry>
               <entry>
                 <java-class>pl.iz.cubicrl.model.enums.SecondaryStat</java-class>
@@ -265,6 +265,13 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus serialization="custom">
+          <pl.iz.cubicrl.model.core.GameEventBus>
+            <default>
+              <subscribers/>
+            </default>
+          </pl.iz.cubicrl.model.core.GameEventBus>
+        </eventBus>
         <roomCoordinates>
           <x>0</x>
           <y>0</y>
@@ -321,6 +328,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>0</x>
           <y>1</y>
@@ -377,6 +385,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>0</x>
           <y>2</y>
@@ -433,6 +442,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>0</x>
           <y>3</y>
@@ -489,6 +499,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>0</x>
           <y>4</y>
@@ -545,6 +556,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>0</x>
           <y>5</y>
@@ -601,6 +613,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>0</x>
           <y>6</y>
@@ -657,6 +670,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>0</x>
           <y>7</y>
@@ -713,6 +727,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>0</x>
           <y>8</y>
@@ -769,6 +784,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>0</x>
           <y>9</y>
@@ -827,6 +843,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>1</x>
           <y>0</y>
@@ -884,6 +901,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>1</x>
           <y>1</y>
@@ -940,6 +958,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>1</x>
           <y>2</y>
@@ -996,6 +1015,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>1</x>
           <y>3</y>
@@ -1052,6 +1072,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>1</x>
           <y>4</y>
@@ -1108,6 +1129,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>1</x>
           <y>5</y>
@@ -1164,6 +1186,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>1</x>
           <y>6</y>
@@ -1220,6 +1243,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>1</x>
           <y>7</y>
@@ -1276,6 +1300,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>1</x>
           <y>8</y>
@@ -1332,6 +1357,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>1</x>
           <y>9</y>
@@ -1390,6 +1416,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>2</x>
           <y>0</y>
@@ -1446,6 +1473,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>2</x>
           <y>1</y>
@@ -1503,6 +1531,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>2</x>
           <y>2</y>
@@ -1559,6 +1588,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>2</x>
           <y>3</y>
@@ -1615,6 +1645,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>2</x>
           <y>4</y>
@@ -1671,6 +1702,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>2</x>
           <y>5</y>
@@ -1727,6 +1759,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>2</x>
           <y>6</y>
@@ -1783,6 +1816,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>2</x>
           <y>7</y>
@@ -1839,6 +1873,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>2</x>
           <y>8</y>
@@ -1895,6 +1930,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>2</x>
           <y>9</y>
@@ -1953,6 +1989,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>3</x>
           <y>0</y>
@@ -2009,6 +2046,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>3</x>
           <y>1</y>
@@ -2065,6 +2103,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>3</x>
           <y>2</y>
@@ -2122,6 +2161,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>3</x>
           <y>3</y>
@@ -2178,6 +2218,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>3</x>
           <y>4</y>
@@ -2234,6 +2275,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>3</x>
           <y>5</y>
@@ -2290,6 +2332,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>3</x>
           <y>6</y>
@@ -2346,6 +2389,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>3</x>
           <y>7</y>
@@ -2402,6 +2446,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>3</x>
           <y>8</y>
@@ -2458,6 +2503,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>3</x>
           <y>9</y>
@@ -2516,6 +2562,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>4</x>
           <y>0</y>
@@ -2572,6 +2619,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>4</x>
           <y>1</y>
@@ -2628,6 +2676,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>4</x>
           <y>2</y>
@@ -2684,6 +2733,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>4</x>
           <y>3</y>
@@ -2741,6 +2791,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>4</x>
           <y>4</y>
@@ -2797,6 +2848,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>4</x>
           <y>5</y>
@@ -2853,6 +2905,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>4</x>
           <y>6</y>
@@ -2909,6 +2962,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>4</x>
           <y>7</y>
@@ -2965,6 +3019,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>4</x>
           <y>8</y>
@@ -3021,6 +3076,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>4</x>
           <y>9</y>
@@ -3079,6 +3135,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>5</x>
           <y>0</y>
@@ -3135,6 +3192,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>5</x>
           <y>1</y>
@@ -3191,6 +3249,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>5</x>
           <y>2</y>
@@ -3247,6 +3306,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>5</x>
           <y>3</y>
@@ -3303,6 +3363,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>5</x>
           <y>4</y>
@@ -3360,6 +3421,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>5</x>
           <y>5</y>
@@ -3416,6 +3478,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>5</x>
           <y>6</y>
@@ -3472,6 +3535,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>5</x>
           <y>7</y>
@@ -3528,6 +3592,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>5</x>
           <y>8</y>
@@ -3584,6 +3649,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>5</x>
           <y>9</y>
@@ -3642,6 +3708,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>6</x>
           <y>0</y>
@@ -3698,6 +3765,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>6</x>
           <y>1</y>
@@ -3754,6 +3822,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>6</x>
           <y>2</y>
@@ -3810,6 +3879,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>6</x>
           <y>3</y>
@@ -3866,6 +3936,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>6</x>
           <y>4</y>
@@ -3922,6 +3993,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>6</x>
           <y>5</y>
@@ -3978,6 +4050,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>6</x>
           <y>6</y>
@@ -4034,6 +4107,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>6</x>
           <y>7</y>
@@ -4090,6 +4164,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>6</x>
           <y>8</y>
@@ -4146,570 +4221,9 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>6</x>
-          <y>9</y>
-        </roomCoordinates>
-        <name>test</name>
-        <visible>false</visible>
-        <visited>false</visited>
-      </pl.iz.cubicrl.model.field.PenetrableField>
-    </pl.iz.cubicrl.model.field.Field-array>
-    <pl.iz.cubicrl.model.field.Field-array>
-      <pl.iz.cubicrl.model.field.PenetrableField>
-        <items serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </items>
-        <traps/>
-        <spriteSheetCoordinates>
-          <x>7</x>
-          <y>0</y>
-        </spriteSheetCoordinates>
-        <Occurrences serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </Occurrences>
-        <roomCoordinates>
-          <x>7</x>
-          <y>0</y>
-        </roomCoordinates>
-        <name>test</name>
-        <visible>false</visible>
-        <visited>false</visited>
-      </pl.iz.cubicrl.model.field.PenetrableField>
-      <pl.iz.cubicrl.model.field.PenetrableField>
-        <items serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </items>
-        <traps/>
-        <spriteSheetCoordinates>
-          <x>7</x>
-          <y>1</y>
-        </spriteSheetCoordinates>
-        <Occurrences serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </Occurrences>
-        <roomCoordinates>
-          <x>7</x>
-          <y>1</y>
-        </roomCoordinates>
-        <name>test</name>
-        <visible>false</visible>
-        <visited>false</visited>
-      </pl.iz.cubicrl.model.field.PenetrableField>
-      <pl.iz.cubicrl.model.field.PenetrableField>
-        <items serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </items>
-        <traps/>
-        <spriteSheetCoordinates>
-          <x>7</x>
-          <y>2</y>
-        </spriteSheetCoordinates>
-        <Occurrences serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </Occurrences>
-        <roomCoordinates>
-          <x>7</x>
-          <y>2</y>
-        </roomCoordinates>
-        <name>test</name>
-        <visible>false</visible>
-        <visited>false</visited>
-      </pl.iz.cubicrl.model.field.PenetrableField>
-      <pl.iz.cubicrl.model.field.PenetrableField>
-        <items serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </items>
-        <traps/>
-        <spriteSheetCoordinates>
-          <x>7</x>
-          <y>3</y>
-        </spriteSheetCoordinates>
-        <Occurrences serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </Occurrences>
-        <roomCoordinates>
-          <x>7</x>
-          <y>3</y>
-        </roomCoordinates>
-        <name>test</name>
-        <visible>false</visible>
-        <visited>false</visited>
-      </pl.iz.cubicrl.model.field.PenetrableField>
-      <pl.iz.cubicrl.model.field.PenetrableField>
-        <items serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </items>
-        <traps/>
-        <spriteSheetCoordinates>
-          <x>7</x>
-          <y>4</y>
-        </spriteSheetCoordinates>
-        <Occurrences serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </Occurrences>
-        <roomCoordinates>
-          <x>7</x>
-          <y>4</y>
-        </roomCoordinates>
-        <name>test</name>
-        <visible>false</visible>
-        <visited>false</visited>
-      </pl.iz.cubicrl.model.field.PenetrableField>
-      <pl.iz.cubicrl.model.field.PenetrableField>
-        <items serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </items>
-        <traps/>
-        <spriteSheetCoordinates>
-          <x>7</x>
-          <y>5</y>
-        </spriteSheetCoordinates>
-        <Occurrences serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </Occurrences>
-        <roomCoordinates>
-          <x>7</x>
-          <y>5</y>
-        </roomCoordinates>
-        <name>test</name>
-        <visible>false</visible>
-        <visited>false</visited>
-      </pl.iz.cubicrl.model.field.PenetrableField>
-      <pl.iz.cubicrl.model.field.PenetrableField>
-        <items serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </items>
-        <traps/>
-        <spriteSheetCoordinates>
-          <x>7</x>
-          <y>6</y>
-        </spriteSheetCoordinates>
-        <Occurrences serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </Occurrences>
-        <roomCoordinates>
-          <x>7</x>
-          <y>6</y>
-        </roomCoordinates>
-        <name>test</name>
-        <visible>false</visible>
-        <visited>false</visited>
-      </pl.iz.cubicrl.model.field.PenetrableField>
-      <pl.iz.cubicrl.model.field.PenetrableField>
-        <items serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </items>
-        <traps/>
-        <spriteSheetCoordinates>
-          <x>7</x>
-          <y>7</y>
-        </spriteSheetCoordinates>
-        <Occurrences serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </Occurrences>
-        <roomCoordinates>
-          <x>7</x>
-          <y>7</y>
-        </roomCoordinates>
-        <name>test</name>
-        <visible>false</visible>
-        <visited>false</visited>
-      </pl.iz.cubicrl.model.field.PenetrableField>
-      <pl.iz.cubicrl.model.field.PenetrableField>
-        <items serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </items>
-        <traps/>
-        <spriteSheetCoordinates>
-          <x>7</x>
-          <y>8</y>
-        </spriteSheetCoordinates>
-        <Occurrences serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </Occurrences>
-        <roomCoordinates>
-          <x>7</x>
-          <y>8</y>
-        </roomCoordinates>
-        <name>test</name>
-        <visible>false</visible>
-        <visited>false</visited>
-      </pl.iz.cubicrl.model.field.PenetrableField>
-      <pl.iz.cubicrl.model.field.PenetrableField>
-        <items serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </items>
-        <traps/>
-        <spriteSheetCoordinates>
-          <x>7</x>
-          <y>9</y>
-        </spriteSheetCoordinates>
-        <Occurrences serialization="custom">
-          <unserializable-parents/>
-          <vector>
-            <default>
-              <capacityIncrement>0</capacityIncrement>
-              <elementCount>0</elementCount>
-              <elementData>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-                <null/>
-              </elementData>
-            </default>
-          </vector>
-        </Occurrences>
-        <roomCoordinates>
-          <x>7</x>
           <y>9</y>
         </roomCoordinates>
         <name>test</name>
@@ -4742,6 +4256,578 @@
         </items>
         <traps/>
         <spriteSheetCoordinates>
+          <x>7</x>
+          <y>0</y>
+        </spriteSheetCoordinates>
+        <Occurrences serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
+        <roomCoordinates>
+          <x>7</x>
+          <y>0</y>
+        </roomCoordinates>
+        <name>test</name>
+        <visible>false</visible>
+        <visited>false</visited>
+      </pl.iz.cubicrl.model.field.PenetrableField>
+      <pl.iz.cubicrl.model.field.PenetrableField>
+        <items serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </items>
+        <traps/>
+        <spriteSheetCoordinates>
+          <x>7</x>
+          <y>1</y>
+        </spriteSheetCoordinates>
+        <Occurrences serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
+        <roomCoordinates>
+          <x>7</x>
+          <y>1</y>
+        </roomCoordinates>
+        <name>test</name>
+        <visible>false</visible>
+        <visited>false</visited>
+      </pl.iz.cubicrl.model.field.PenetrableField>
+      <pl.iz.cubicrl.model.field.PenetrableField>
+        <items serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </items>
+        <traps/>
+        <spriteSheetCoordinates>
+          <x>7</x>
+          <y>2</y>
+        </spriteSheetCoordinates>
+        <Occurrences serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
+        <roomCoordinates>
+          <x>7</x>
+          <y>2</y>
+        </roomCoordinates>
+        <name>test</name>
+        <visible>false</visible>
+        <visited>false</visited>
+      </pl.iz.cubicrl.model.field.PenetrableField>
+      <pl.iz.cubicrl.model.field.PenetrableField>
+        <items serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </items>
+        <traps/>
+        <spriteSheetCoordinates>
+          <x>7</x>
+          <y>3</y>
+        </spriteSheetCoordinates>
+        <Occurrences serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
+        <roomCoordinates>
+          <x>7</x>
+          <y>3</y>
+        </roomCoordinates>
+        <name>test</name>
+        <visible>false</visible>
+        <visited>false</visited>
+      </pl.iz.cubicrl.model.field.PenetrableField>
+      <pl.iz.cubicrl.model.field.PenetrableField>
+        <items serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </items>
+        <traps/>
+        <spriteSheetCoordinates>
+          <x>7</x>
+          <y>4</y>
+        </spriteSheetCoordinates>
+        <Occurrences serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
+        <roomCoordinates>
+          <x>7</x>
+          <y>4</y>
+        </roomCoordinates>
+        <name>test</name>
+        <visible>false</visible>
+        <visited>false</visited>
+      </pl.iz.cubicrl.model.field.PenetrableField>
+      <pl.iz.cubicrl.model.field.PenetrableField>
+        <items serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </items>
+        <traps/>
+        <spriteSheetCoordinates>
+          <x>7</x>
+          <y>5</y>
+        </spriteSheetCoordinates>
+        <Occurrences serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
+        <roomCoordinates>
+          <x>7</x>
+          <y>5</y>
+        </roomCoordinates>
+        <name>test</name>
+        <visible>false</visible>
+        <visited>false</visited>
+      </pl.iz.cubicrl.model.field.PenetrableField>
+      <pl.iz.cubicrl.model.field.PenetrableField>
+        <items serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </items>
+        <traps/>
+        <spriteSheetCoordinates>
+          <x>7</x>
+          <y>6</y>
+        </spriteSheetCoordinates>
+        <Occurrences serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
+        <roomCoordinates>
+          <x>7</x>
+          <y>6</y>
+        </roomCoordinates>
+        <name>test</name>
+        <visible>false</visible>
+        <visited>false</visited>
+      </pl.iz.cubicrl.model.field.PenetrableField>
+      <pl.iz.cubicrl.model.field.PenetrableField>
+        <items serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </items>
+        <traps/>
+        <spriteSheetCoordinates>
+          <x>7</x>
+          <y>7</y>
+        </spriteSheetCoordinates>
+        <Occurrences serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
+        <roomCoordinates>
+          <x>7</x>
+          <y>7</y>
+        </roomCoordinates>
+        <name>test</name>
+        <visible>false</visible>
+        <visited>false</visited>
+      </pl.iz.cubicrl.model.field.PenetrableField>
+      <pl.iz.cubicrl.model.field.PenetrableField>
+        <items serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </items>
+        <traps/>
+        <spriteSheetCoordinates>
+          <x>7</x>
+          <y>8</y>
+        </spriteSheetCoordinates>
+        <Occurrences serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
+        <roomCoordinates>
+          <x>7</x>
+          <y>8</y>
+        </roomCoordinates>
+        <name>test</name>
+        <visible>false</visible>
+        <visited>false</visited>
+      </pl.iz.cubicrl.model.field.PenetrableField>
+      <pl.iz.cubicrl.model.field.PenetrableField>
+        <items serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </items>
+        <traps/>
+        <spriteSheetCoordinates>
+          <x>7</x>
+          <y>9</y>
+        </spriteSheetCoordinates>
+        <Occurrences serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
+        <roomCoordinates>
+          <x>7</x>
+          <y>9</y>
+        </roomCoordinates>
+        <name>test</name>
+        <visible>false</visible>
+        <visited>false</visited>
+      </pl.iz.cubicrl.model.field.PenetrableField>
+    </pl.iz.cubicrl.model.field.Field-array>
+    <pl.iz.cubicrl.model.field.Field-array>
+      <pl.iz.cubicrl.model.field.PenetrableField>
+        <items serialization="custom">
+          <unserializable-parents/>
+          <vector>
+            <default>
+              <capacityIncrement>0</capacityIncrement>
+              <elementCount>0</elementCount>
+              <elementData>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </elementData>
+            </default>
+          </vector>
+        </items>
+        <traps/>
+        <spriteSheetCoordinates>
           <x>8</x>
           <y>0</y>
         </spriteSheetCoordinates>
@@ -4766,6 +4852,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>8</x>
           <y>0</y>
@@ -4822,6 +4909,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>8</x>
           <y>1</y>
@@ -4878,6 +4966,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>8</x>
           <y>2</y>
@@ -4934,6 +5023,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>8</x>
           <y>3</y>
@@ -4990,6 +5080,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>8</x>
           <y>4</y>
@@ -5046,6 +5137,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>8</x>
           <y>5</y>
@@ -5102,6 +5194,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>8</x>
           <y>6</y>
@@ -5158,6 +5251,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>8</x>
           <y>7</y>
@@ -5214,6 +5308,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>8</x>
           <y>8</y>
@@ -5270,6 +5365,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>8</x>
           <y>9</y>
@@ -5328,6 +5424,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>9</x>
           <y>0</y>
@@ -5384,6 +5481,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>9</x>
           <y>1</y>
@@ -5440,6 +5538,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>9</x>
           <y>2</y>
@@ -5496,6 +5595,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>9</x>
           <y>3</y>
@@ -5552,6 +5652,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>9</x>
           <y>4</y>
@@ -5608,6 +5709,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>9</x>
           <y>5</y>
@@ -5664,6 +5766,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>9</x>
           <y>6</y>
@@ -5720,6 +5823,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>9</x>
           <y>7</y>
@@ -5776,6 +5880,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>9</x>
           <y>8</y>
@@ -5832,6 +5937,7 @@
             </default>
           </vector>
         </Occurrences>
+        <eventBus reference="../../../pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal/eventBus"/>
         <roomCoordinates>
           <x>9</x>
           <y>9</y>
@@ -5848,16 +5954,16 @@
       <pl.iz.cubicrl.model.field.Portal reference="../../../fields/pl.iz.cubicrl.model.field.Field-array/pl.iz.cubicrl.model.field.Portal"/>
     </entry>
     <entry>
-      <pl.iz.cubicrl.model.enums.Direction reference="../../../fields/pl.iz.cubicrl.model.field.Field-array[4]/pl.iz.cubicrl.model.field.Portal/direction"/>
-      <pl.iz.cubicrl.model.field.Portal reference="../../../fields/pl.iz.cubicrl.model.field.Field-array[4]/pl.iz.cubicrl.model.field.Portal"/>
-    </entry>
-    <entry>
       <pl.iz.cubicrl.model.enums.Direction reference="../../../fields/pl.iz.cubicrl.model.field.Field-array[2]/pl.iz.cubicrl.model.field.Portal/direction"/>
       <pl.iz.cubicrl.model.field.Portal reference="../../../fields/pl.iz.cubicrl.model.field.Field-array[2]/pl.iz.cubicrl.model.field.Portal"/>
     </entry>
     <entry>
       <pl.iz.cubicrl.model.enums.Direction reference="../../../fields/pl.iz.cubicrl.model.field.Field-array[3]/pl.iz.cubicrl.model.field.Portal/direction"/>
       <pl.iz.cubicrl.model.field.Portal reference="../../../fields/pl.iz.cubicrl.model.field.Field-array[3]/pl.iz.cubicrl.model.field.Portal"/>
+    </entry>
+    <entry>
+      <pl.iz.cubicrl.model.enums.Direction reference="../../../fields/pl.iz.cubicrl.model.field.Field-array[4]/pl.iz.cubicrl.model.field.Portal/direction"/>
+      <pl.iz.cubicrl.model.field.Portal reference="../../../fields/pl.iz.cubicrl.model.field.Field-array[4]/pl.iz.cubicrl.model.field.Portal"/>
     </entry>
     <entry>
       <pl.iz.cubicrl.model.enums.Direction reference="../../../fields/pl.iz.cubicrl.model.field.Field-array[5]/pl.iz.cubicrl.model.field.Portal/direction"/>

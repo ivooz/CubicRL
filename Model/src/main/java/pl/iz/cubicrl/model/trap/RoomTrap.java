@@ -11,7 +11,7 @@ import pl.iz.cubicrl.model.core.Room;
 import pl.iz.cubicrl.model.creature.Creature;
 import pl.iz.cubicrl.model.field.Field;
 import pl.iz.cubicrl.model.field.PenetrableField;
-import pl.iz.cubicrl.model.occurence.Occurence;
+import pl.iz.cubicrl.model.occurrence.Occurrence;
 
 /**
  *
@@ -19,7 +19,8 @@ import pl.iz.cubicrl.model.occurence.Occurence;
  */
 public class RoomTrap extends VisitorAdapter {
 
-	private Occurence occurence;
+	private Occurrence Occurrence;
+	private final String name;
 	private final Enum testedStatistic;
 	private final int testFrequency;
 	private final int testDifficulty;
@@ -33,9 +34,9 @@ public class RoomTrap extends VisitorAdapter {
 	private int timer;
 
 	/**
-	 * Vicious trap capable of moving spreading an Occurence. Tests all the
+	 * Vicious trap capable of moving spreading an Occurrence. Tests all the
 	 * creatures in the Room - once it activates it works indefinitely.
-	 * Occurence must be added manually.
+	 * Occurrence must be added manually.
 	 *
 	 * @param testFrequency once per how many turns activation tests are
 	 * performed
@@ -53,8 +54,9 @@ public class RoomTrap extends VisitorAdapter {
 	 * [-instability;instability] is su
 	 */
 	public RoomTrap(int testFrequency, int testDifficulty, Enum testedStatistic,
-		int moduloFactor, int frequency, int mobility, int instability) {
+		int moduloFactor, int frequency, int mobility, int instability, String name) {
 		this.testFrequency = testFrequency;
+		this.name = name;
 		this.testDifficulty = testDifficulty;
 		this.testedStatistic = testedStatistic;
 		this.moduloFactor = moduloFactor;
@@ -76,8 +78,8 @@ public class RoomTrap extends VisitorAdapter {
 	protected boolean isEligibleForTrap(Field field, int disturbance) {
 		return (field instanceof PenetrableField
 			&& (field.getRoomCoords().x + field.getRoomCoords().y
-			+ deviation) % ((moduloFactor + disturbance) == 0 
-			? 1 
+			+ deviation) % ((moduloFactor + disturbance) == 0
+			? 1
 			: (moduloFactor + disturbance)) == 0);
 	}
 
@@ -88,7 +90,7 @@ public class RoomTrap extends VisitorAdapter {
 			int disturbance = instability > 0 ? random.nextInt(instability + 1) - instability : 0;
 			room.getFieldsAsParallelStream()
 				.filter(f -> isEligibleForTrap(f, disturbance))
-				.forEach(f -> f.addOccurence(occurence.copy()));
+				.forEach(f -> f.addOccurrence(Occurrence.copy()));
 			deviation += mobility;
 		}
 		timer++;
@@ -104,15 +106,19 @@ public class RoomTrap extends VisitorAdapter {
 		}
 	}
 
-	public Occurence getOccurence() {
-		return occurence;
+	public Occurrence getOccurrence() {
+		return Occurrence;
 	}
 
-	public void setOccurence(Occurence occurence) {
-		this.occurence = occurence;
+	public void setOccurrence(Occurrence Occurrence) {
+		this.Occurrence = Occurrence;
 	}
 
 	public boolean isActivated() {
 		return activated;
+	}
+
+	public String getName() {
+		return name;
 	}
 }

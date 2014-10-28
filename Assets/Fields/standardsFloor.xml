@@ -1,0 +1,52 @@
+<pl.iz.cubicrl.model.field.PenetrableField>
+  <items serialization="custom">
+    <unserializable-parents/>
+    <vector>
+      <default>
+        <capacityIncrement>0</capacityIncrement>
+        <elementCount>0</elementCount>
+        <elementData>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+        </elementData>
+      </default>
+    </vector>
+  </items>
+  <traps/>
+  <spriteSheetCoordinates>
+    <x>1</x>
+    <y>2</y>
+  </spriteSheetCoordinates>
+  <Occurrences serialization="custom">
+    <unserializable-parents/>
+    <vector>
+      <default>
+        <capacityIncrement>0</capacityIncrement>
+        <elementCount>0</elementCount>
+        <elementData>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+        </elementData>
+      </default>
+    </vector>
+  </Occurrences>
+  <name>standardsFloor</name>
+  <visible>false</visible>
+  <visited>false</visited>
+</pl.iz.cubicrl.model.field.PenetrableField>

@@ -5,7 +5,6 @@ package pl.iz.cubicrl.model.tests.item;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import pl.iz.cubicrl.model.tests.TestFactory;
 import java.util.stream.IntStream;
 import org.junit.After;
@@ -23,39 +22,39 @@ import pl.iz.cubicrl.model.tests.TestFactory;
  * @author Ivo
  */
 public class Weapon_Test {
-	
+
 	HumanoidCreature testCreature;
 	Weapon testWeapon;
-	
+
 	public Weapon_Test() {
 	}
-	
+
 	@BeforeClass
 	public static void setUpClass() {
 	}
-	
+
 	@AfterClass
 	public static void tearDownClass() {
 	}
-	
+
 	@Before
 	public void setUp() {
-		testCreature=TestFactory.getInstance().getGenericHumanoidCreature();
-		testWeapon=TestFactory.getInstance().getGenericWeapon();
+		testCreature = TestFactory.getInstance().getGenericHumanoidCreature();
+		testWeapon = TestFactory.getInstance().getGenericWeapon();
 	}
-	
+
 	@After
 	public void tearDown() {
 	}
 
-        @Test
+	@Test
 	public void damageTest_testingWeaponDamage() {
 		int lowerBound = testWeapon.getLowerDamageBound();
 		int upperBound = testWeapon.getUpperDamageBound();
 		IntStream.range(1, 100).forEach(
 			i -> {
 				int damage = testWeapon.getDamage();
-				assertTrue(damage>=lowerBound && damage <=upperBound);
+				assertTrue(damage >= lowerBound && damage <= upperBound);
 			}
 		);
 	}

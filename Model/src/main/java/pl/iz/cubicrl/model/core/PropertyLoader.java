@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.iz.cubicrl.model.util;
+package pl.iz.cubicrl.model.core;
 
 import com.google.inject.Singleton;
 import java.io.FileInputStream;
@@ -22,23 +22,15 @@ import java.util.logging.Logger;
 @Singleton
 public class PropertyLoader {
 
-	private static PropertyLoader instance;
-	Properties properties;
+	private Properties properties;
 
-	private PropertyLoader() {
+	public PropertyLoader() {
 		properties = new Properties();
 		try {
 			properties.load(new FileInputStream("../config/game.properties"));
 		} catch (IOException ex) {
 			Logger.getLogger(PropertyLoader.class.getName()).log(Level.SEVERE, null, ex);
 		}
-	}
-
-	public static PropertyLoader getInstance() {
-		if (instance == null) {
-			instance = new PropertyLoader();
-		}
-		return instance;
 	}
 
 	public String loadProperty(String property) {

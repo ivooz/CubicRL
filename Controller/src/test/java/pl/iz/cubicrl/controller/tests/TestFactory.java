@@ -12,6 +12,8 @@ import javafx.util.Pair;
 import pl.iz.cubicrl.model.attack.Attack;
 import pl.iz.cubicrl.model.core.Coords2D;
 import pl.iz.cubicrl.model.core.GameEventBus;
+import pl.iz.cubicrl.model.core.GameWorld;
+import pl.iz.cubicrl.model.core.PropertyLoader;
 import pl.iz.cubicrl.model.core.Room;
 import pl.iz.cubicrl.model.creature.Creature;
 import pl.iz.cubicrl.model.creature.CreatureStats;
@@ -28,10 +30,11 @@ import pl.iz.cubicrl.model.field.PenetrableField;
 import pl.iz.cubicrl.model.field.Portal;
 import pl.iz.cubicrl.model.items.EquipableItem;
 import pl.iz.cubicrl.model.items.Weapon;
-import pl.iz.cubicrl.model.occurence.FieldTrap;
-import pl.iz.cubicrl.model.occurence.Occurence;
-import pl.iz.cubicrl.model.occurence.OccurenceWithEffects;
-import pl.iz.cubicrl.model.occurence.TimedOccurenceWithEffects;
+import pl.iz.cubicrl.model.occurrence.FieldTrap;
+import pl.iz.cubicrl.model.occurrence.Occurrence;
+import pl.iz.cubicrl.model.occurrence.OccurrenceWithEffects;
+import pl.iz.cubicrl.model.occurrence.TimedOccurrenceWithEffects;
+import pl.iz.cubicrl.model.trap.RoomTrap;
 
 /**
  *
@@ -40,11 +43,15 @@ import pl.iz.cubicrl.model.occurence.TimedOccurenceWithEffects;
 public class TestFactory {
 
 	GameEventBus eventBus;
+	PropertyLoader propertyLoader;
+	GameWorld gameWorld;
 
 	@Inject
-	public TestFactory(GameEventBus eventBus) {
+	public TestFactory(GameEventBus eventBus, GameWorld gameWorld) {
 		this.eventBus = eventBus;
+		this.gameWorld = gameWorld;
 	}
+	
 	public Weapon getGenericWeapon() {
 		return new Weapon(DamageType.BLUNT, 5, 10, "testWeapon", new Coords2D(1, 1), new Coords2D(1, 1));
 	}
@@ -62,28 +69,30 @@ public class TestFactory {
 		Field[][] fields = room.getFields();
 		IntStream.range(0, 10).forEach(x
 			-> IntStream.range(0, 10).forEach(y
-				-> fields[x][y] = new PenetrableField("test", new Coords2D(x, y), new Coords2D(x, y),eventBus)));
-		Portal portalNORTH = new Portal(Direction.NORTH, room, "testPortal", new Coords2D(0, 0), new Coords2D(1, 1),eventBus);
-		Portal portalSOUTH = new Portal(Direction.SOUTH, room, "testPortal", new Coords2D(1, 1), new Coords2D(1, 1),eventBus);
-		Portal portalWEST = new Portal(Direction.WEST, room, "testPortal", new Coords2D(2, 2), new Coords2D(1, 1),eventBus);
-		Portal portalEAST = new Portal(Direction.EAST, room, "testPortal", new Coords2D(3, 3), new Coords2D(1, 1),eventBus);
-		Portal portalUP = new Portal(Direction.UP, room, "testPortal", new Coords2D(4, 4), new Coords2D(1, 1),eventBus);
-		Portal portalDOWN = new Portal(Direction.DOWN, room, "testPortal", new Coords2D(5, 5), new Coords2D(1, 1),eventBus);
+				-> fields[x][y] = new PenetrableField("test",
+					new Coords2D(x, y), new Coords2D(x, y), eventBus)));
+		Portal portalNORTH = new Portal(Direction.NORTH, "testPortal",
+			new Coords2D(0, 0), new Coords2D(1, 1), eventBus);
+		Portal portalSOUTH = new Portal(Direction.SOUTH, "testPortal",
+			new Coords2D(1, 1), new Coords2D(1, 1), eventBus);
+		Portal portalWEST = new Portal(Direction.WEST, "testPortal",
+			new Coords2D(2, 2), new Coords2D(1, 1), eventBus);
+		Portal portalEAST = new Portal(Direction.EAST, "testPortal",
+			new Coords2D(3, 3), new Coords2D(1, 1), eventBus);
+		Portal portalUP = new Portal(Direction.UP, "testPortal",
+			new Coords2D(4, 4), new Coords2D(1, 1), eventBus);
+		Portal portalDOWN = new Portal(Direction.DOWN, "testPortal",
+			new Coords2D(5, 5), new Coords2D(1, 1), eventBus);
 		fields[0][0] = portalNORTH;
 		fields[1][1] = portalSOUTH;
 		fields[2][2] = portalWEST;
 		fields[3][3] = portalEAST;
 		fields[4][4] = portalUP;
 		fields[5][5] = portalDOWN;
-		room.getEntrances().put(Direction.SOUTH, portalSOUTH);
-		room.getEntrances().put(Direction.NORTH, portalNORTH);
-		room.getEntrances().put(Direction.WEST, portalWEST);
-		room.getEntrances().put(Direction.EAST, portalEAST);
-		room.getEntrances().put(Direction.UP, portalUP);
-		room.getEntrances().put(Direction.DOWN, portalDOWN);
+		room.resolveEntrances();
 		return room;
 	}
-
+	
 	/**
 	 * Should take away 1HP each turn given standard resistances
 	 *
@@ -102,42 +111,46 @@ public class TestFactory {
 	}
 
 	public Creature getGenericCreature() {
-		return new Creature("test", new int[]{5, 5, 5, 5, 5, 5}, //Attributes 
+		Creature creature = new Creature("test", new int[]{5, 5, 5, 5, 5, 5}, //Attributes 
 			new int[]{1, 1, 1, 1, 1, 1, 1}, //Skills
 			new int[]{100, 100, 100, 100}, // LifeStatLimits
 			new int[]{10, 10, 10, 10, 10, 10, 10}, //Resistances
 			new int[]{0}, //Secondary Stats
 			new Attack(10, 10, DamageType.BLUNT));
+		creature.setPropertyLoader(propertyLoader);
+		return creature;
 	}
 
 	public HumanoidCreature getGenericHumanoidCreature() {
-		return new HumanoidCreature("test", new int[]{5, 5, 5, 5, 5, 5}, //Attributes 
+		HumanoidCreature crea = new HumanoidCreature("test", new int[]{5, 5, 5, 5, 5, 5}, //Attributes 
 			new int[]{1, 1, 1, 1, 1, 1, 1}, //Skills
 			new int[]{100, 100, 100, 100}, // LifeStatLimits
 			new int[]{10, 10, 10, 10, 10, 10, 10},//Resistances
 			new int[]{0} // SecondaryStats
 		);
+		crea.setPropertyLoader(propertyLoader);
+		return crea;
 	}
-	
+
 	
 	public Player getGenericPlayer() {
-		return new Player(new CreatureStats());
+		return new Player(new CreatureStats(propertyLoader));
 	}
 
 	public PenetrableField getGenericPenetrableField() {
 		return new PenetrableField("testPF", new Coords2D(1, 1), new Coords2D(1, 1),eventBus);
 	}
 
-	public Occurence getGenericOccurence() {
-		return new Occurence("testGO", new Coords2D(1, 1));
+	public Occurrence getGenericOccurrence() {
+		return new Occurrence("testGO", new Coords2D(1, 1));
 	}
 
-	public OccurenceWithEffects getGenericOccurenceWithEffects() {
-		return new OccurenceWithEffects("testOWE", new Coords2D(1, 1));
+	public OccurrenceWithEffects getGenericOccurrenceWithEffects() {
+		return new OccurrenceWithEffects("testOWE", new Coords2D(1, 1));
 	}
 
-	public TimedOccurenceWithEffects getGenericTimedOccurenceWithEffects(int timer) {
-		return new TimedOccurenceWithEffects("testGTWE", new Coords2D(1, 1), timer);
+	public TimedOccurrenceWithEffects getGenericTimedOccurrenceWithEffects(int timer) {
+		return new TimedOccurrenceWithEffects("testGTWE", new Coords2D(1, 1), timer);
 	}
 
 	public Attack getKillingAttack(DamageType damageType) {
@@ -153,5 +166,15 @@ public class TestFactory {
 	public Attack getWeakAttack(DamageType damageType) {
 		return new Attack(Integer.MAX_VALUE, 2, damageType);
 	}
+	
+	public RoomTrap getGenericRoomTrap() {
+		return new RoomTrap(1, Integer.MAX_VALUE, Attribute.STRENGTH, 2, 2, 0, 0,"testTrap");
+	}
+
+	public GameEventBus getEventBus() {
+		return eventBus;
+	}
+	
+	
 }
 

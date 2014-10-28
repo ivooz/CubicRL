@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import pl.iz.cubicrl.model.api.events.GameEvent;
 
 /**
  * Wrapper for google EventBus
@@ -22,19 +23,33 @@ public class GameEventBus implements Serializable {
 
 	transient private final EventBus eventBus;
 	private final ArrayList<Object> subscribers;
+	transient private Object gameController;
 
 	public GameEventBus() {
 		eventBus = new EventBus();
 		subscribers = new ArrayList<>();
 	}
 
+	/**
+	 * To be used only by classes from the model
+	 * @param o 
+	 */
 	public void subscribe(Object o) {
 		eventBus.register(o);
 		subscribers.add(o);
 	}
+	
+	/**
+	 * To be used for subscribtion of items that shouldn't be serialized
+	 * @param o 
+	 */
+	public void subscribeMechanic(Object o) {
+		eventBus.register(o);
+	}
 
-	public void publish(Object o) {
-		eventBus.post(o);
+	public void publish(GameEvent e) {
+		e.setGameController(gameController);
+		eventBus.post(e);
 	}
 
 	private void readObject(java.io.ObjectInputStream in)
@@ -47,5 +62,12 @@ public class GameEventBus implements Serializable {
 		return subscribers;
 	}
 	
-	
+	public Object getGameController() {
+		return gameController;
+	}
+
+	public void setGameController(Object gameController) {
+		this.gameController = gameController;
+	}
+
 }

@@ -8,7 +8,7 @@ package pl.iz.cubicrl.model.api;
 import pl.iz.cubicrl.model.creature.Creature;
 import pl.iz.cubicrl.model.field.Field;
 import pl.iz.cubicrl.model.items.Item;
-import pl.iz.cubicrl.model.occurence.Occurence;
+import pl.iz.cubicrl.model.occurrence.Occurrence;
 import pl.iz.cubicrl.model.field.PenetrableField;
 import pl.iz.cubicrl.model.core.Room;
 import pl.iz.cubicrl.model.trap.Trap;
@@ -49,11 +49,11 @@ public interface Visitor {
 	public void visit(Item item);
 
 	/**
-	 * Allows various objects to Occurences .
+	 * Allows various objects to Occurrences .
 	 *
-	 * @param occurence to be visited
+	 * @param Occurrence to be visited
 	 */
-	public void visit(Occurence occurence);
+	public void visit(Occurrence Occurrence);
 
 	/**
 	 * Allows various objects to visit Traps.

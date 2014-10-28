@@ -9,7 +9,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.Arrays;
 import javax.validation.constraints.NotNull;
-import pl.iz.cubicrl.model.util.PropertyLoader;
+import pl.iz.cubicrl.model.core.PropertyLoader;
 /*@param name of the creature, must be unique
  * @param attri initial values of attributes
  * [STRNGTH,DXTRT,SPD,CNST,INTL,CHA]

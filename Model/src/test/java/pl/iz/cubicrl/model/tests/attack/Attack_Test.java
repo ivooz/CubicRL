@@ -81,11 +81,11 @@ public class Attack_Test {
 			i -> {
 				testCreature1.visit(testField1);
 				//This attack must always miss
-				assertEquals(initialHP,testHumanoid1.getEffectiveStat(LifeStat.HP));
+				assertEquals(initialHP, testHumanoid1.getEffectiveStat(LifeStat.HP));
 			}
 		);
 	}
-	
+
 	@Test
 	public void testAttackingSomeoneWithSuperAC() {
 		//Super AC
@@ -95,11 +95,11 @@ public class Attack_Test {
 			i -> {
 				testCreature1.visit(testField1);
 				//This attack must always be deflected
-				assertEquals(initialHP,testHumanoid1.getEffectiveStat(LifeStat.HP));
+				assertEquals(initialHP, testHumanoid1.getEffectiveStat(LifeStat.HP));
 			}
 		);
 	}
-	
+
 	@Test
 	public void testWeaponEffectHumanoidvsCrea() {
 		Effect effect = new Effect("test");
@@ -111,7 +111,7 @@ public class Attack_Test {
 		//This attack must kill instantly
 		assertTrue(testCreature1.getEffects().contains(effect));
 	}
-	
+
 	@Test
 	public void testWeaponEffectHumanoidVsHumanoid() {
 		HumanoidCreature testHumanoid2 = TestFactory.getInstance().getGenericHumanoidCreature();

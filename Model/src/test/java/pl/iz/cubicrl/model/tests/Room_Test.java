@@ -5,7 +5,6 @@ package pl.iz.cubicrl.model.tests;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +17,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import pl.iz.cubicrl.model.core.Room;
 import pl.iz.cubicrl.model.core.Coords2D;
-import pl.iz.cubicrl.model.util.PropertyLoader;
+import pl.iz.cubicrl.model.core.PropertyLoader;
 
 /**
  *
@@ -34,7 +33,7 @@ public class Room_Test {
 
 	@BeforeClass
 	public static void setUpClass() {
-		Integer.parseInt(PropertyLoader.getInstance().loadProperty("cubeEdgeSize"));
+		Integer.parseInt(new PropertyLoader().loadProperty("cubeEdgeSize"));
 	}
 
 	@AfterClass
@@ -43,7 +42,7 @@ public class Room_Test {
 
 	@Before
 	public void setUp() {
-		testRoom = new Room(roomEdgeSize,"test");
+		testRoom = new Room(roomEdgeSize, "test");
 	}
 
 	@After
